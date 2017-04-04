@@ -1,0 +1,699 @@
+<?xml version="1.0" encoding="UTF-8"?><Db flnm="der" nm="tcc" ver="1.3.4">
+  <VerLbl/>
+  <VerNotes/>
+  <DefTblOpts/>
+  <DocFolder>/home/jadson</DocFolder>
+  <Sch Cm="" nm="schemaA">
+    <Tbl UsSo="1" nm="acompanhante">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pkacompanhante"/>
+      <Cl au="0" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="grau_parentesco" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="data_criacao" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="pessoa_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_acompanhate_pessoa" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="pessoa" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="acompanhante" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="pessoa_id" prCl="id"/>
+      </Fk>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="auditoria">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pkauditoria"/>
+      <Cl au="0" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="rotina" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="usuario_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="tipo_operacao" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+        <Cm>1 - INSERT
+2 - UPDATE
+3 - DELETE</Cm>
+      </Cl>
+      <Cl au="0" df="" nm="identificacao_registro" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+        <Cm>id do registro alterado, não será fk</Cm>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="data_criacao" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_auditoria_usuario" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="usuario" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="auditoria" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="usuario_id" prCl="id"/>
+      </Fk>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="clinica">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pkclinica"/>
+      <Cl au="0" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="nome" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="60" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="telefone" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="11" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="contato" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="60" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="data_criacao" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="doacao">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pkdoacao"/>
+      <Cl au="0" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="doador_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="tipo_doacao_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="0" nm="quantidade" nu="0">
+        <DT arr="0" ds="Numeric" en="" id="2" ln="11" sc="2" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="observacao" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="100" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="data_criacao" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_doacao_doador" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="doador" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="doacao" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="doador_id" prCl="id"/>
+      </Fk>
+      <Fk deAc="3" nm="fk_doacao_tipo_doacao" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="tipo_doacao" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="doacao" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="tipo_doacao_id" prCl="id"/>
+      </Fk>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="doador">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pkdoador"/>
+      <Cl au="0" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="nome" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="60" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="endereco" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="60" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="telefone" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="11" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="cpf" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="11" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="municipio_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="data_criacao" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_doador_municipio" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="municipio" oe="1" sch="schemaA" zr="1"/>
+        <CdTb mn="1" nm="doador" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="municipio_id" prCl="id"/>
+      </Fk>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="endereco">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pkendereco"/>
+      <Cl au="0" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="cep" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="8" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="logradouro" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="60" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="numero" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="6" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="ponto_referencia" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="6" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="bairro" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="40" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="municipio_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="data_criacao" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_endereco_municipio" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="municipio" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="endereco" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="municipio_id" prCl="id"/>
+      </Fk>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="estado">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pkestado"/>
+      <Cl au="0" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="nome" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="40" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="data_criacao" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="municipio">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pkmunicipio"/>
+      <Cl au="0" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="nome" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="60" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="estado_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="data_criacao" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_municipio_estado" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="estado" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="municipio" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="estado_id" prCl="id"/>
+      </Fk>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="paciente">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pkpaciente"/>
+      <Cl au="0" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="data_nacimento" nu="0">
+        <DT arr="0" ds="Date" en="" id="91" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="escolaridade" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="estado_civil" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="0" nm="quantidade_filho" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="conjuge" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="60" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="1" nm="tipo_moradia" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="false" nm="recebe_renda" nu="0">
+        <DT arr="0" ds="Boolean" en="" id="16" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="observacao" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="100" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="acompanhate_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="tratamento_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="data_criacao" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="pessoa_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_paciente_acompanhate" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="acompanhante" oe="1" sch="schemaA" zr="1"/>
+        <CdTb mn="1" nm="paciente" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="acompanhate_id" prCl="id"/>
+      </Fk>
+      <Fk deAc="3" nm="fk_paciente_pessoa" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="pessoa" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="paciente" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="pessoa_id" prCl="id"/>
+      </Fk>
+      <Fk deAc="3" nm="fk_paciente_tratamento" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="tratamento" oe="1" sch="schemaA" zr="1"/>
+        <CdTb mn="1" nm="paciente" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="tratamento_id" prCl="id"/>
+      </Fk>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="pessoa">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pkpessoa"/>
+      <Cl au="1" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="nome" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="60" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="rg" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="14" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="profissao" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="30" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="telefone" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="11" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="celular" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="11" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="email" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="60" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="endereco_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="data_criacao" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_pessoa_municipio" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="endereco" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="pessoa" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="endereco_id" prCl="id"/>
+      </Fk>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="rotina">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pkrotina"/>
+      <Cl au="0" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="data_criacao" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="perfil" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+        <Cm>1 - Administrador
+2 - Financeiro
+3 - Comum</Cm>
+      </Cl>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="servico">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pkservico"/>
+      <Cl au="0" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="descricao" nu="1">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="60" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="tipo_servico_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="paciente_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="0" nm="quantidade" nu="0">
+        <DT arr="0" ds="Number" en="" id="780" ln="9" sc="2" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="data_criacao" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_servico_paciente" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="paciente" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="servico" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="paciente_id" prCl="id"/>
+      </Fk>
+      <Fk deAc="3" nm="fk_servico_tipo_servico" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="tipo_servico" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="servico" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="tipo_servico_id" prCl="id"/>
+      </Fk>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="tipo_cancer">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pktipo_cancer"/>
+      <Cl au="0" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="descricao" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="60" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="data_criacao" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="tipo_doacao">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pktipo_doacao"/>
+      <Cl au="0" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="descricao" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="60" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="data_criacao" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="tipo_servico">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pktipo_servico"/>
+      <Cl au="0" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="descricao" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="60" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="data_criacao" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="tratamento">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pktratamento"/>
+      <Cl au="0" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="false" nm="quimioterapio" nu="0">
+        <DT arr="0" ds="Boolean" en="" id="16" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="false" nm="radioterapio" nu="0">
+        <DT arr="0" ds="Boolean" en="" id="16" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="data_diagnostico" nu="0">
+        <DT arr="0" ds="Date" en="" id="91" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="data_fim_tratamento" nu="1">
+        <DT arr="0" ds="Date" en="" id="91" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="tipo_finalizacao" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+        <Cm>1 - Cura
+2 - Óbito</Cm>
+      </Cl>
+      <Cl au="0" df="" nm="tipo_cancer_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="clinica_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="paciente_id" nu="1">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="data_criacao" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_tipo_cancer_clinica" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="tipo_cancer" oe="1" sch="schemaA" zr="1"/>
+        <CdTb mn="1" nm="tratamento" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="tipo_cancer_id" prCl="id"/>
+      </Fk>
+      <Fk deAc="3" nm="fk_tratamento_clinica" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="clinica" oe="1" sch="schemaA" zr="1"/>
+        <CdTb mn="1" nm="tratamento" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="clinica_id" prCl="id"/>
+      </Fk>
+      <Fk deAc="3" nm="fk_tratamento_paciente" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="paciente" oe="1" sch="schemaA" zr="1"/>
+        <CdTb mn="1" nm="tratamento" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="paciente_id" prCl="id"/>
+      </Fk>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="usuario">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pkusuario"/>
+      <Cl au="0" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="nome" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="60" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="login" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="60" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="senha" nu="0">
+        <DT arr="0" ds="VarChar" en="" id="12" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="data_criacao" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <Tbl UsSo="1" nm="utilizacao_doacao">
+      <TblOpts/>
+      <Pk ClNs="id" nm="pkutilizacao_doacao"/>
+      <Cl au="0" df="" nm="id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="doacao_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="" nm="tipo_servico_id" nu="0">
+        <DT arr="0" ds="Integer" en="" id="4" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="0" nm="quantidade" nu="0">
+        <DT arr="0" ds="Numeric" en="" id="2" ln="11" sc="2" sg="1" un="0"/>
+      </Cl>
+      <Cl au="0" df="CURRENT_TIMESTAMP" nm="data_criacao" nu="0">
+        <DT arr="0" ds="TimeStamp" en="" id="93" ln="null" sc="null" sg="1" un="0"/>
+      </Cl>
+      <Fk deAc="3" nm="fk_utilizacao_doacao_doacao" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="doacao" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="utilizacao_doacao" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="doacao_id" prCl="id"/>
+      </Fk>
+      <Fk deAc="3" nm="fk_utilizacao_doacao_tipo_servico" prLkCl="id" upAc="3">
+        <PrTb mn="0" nm="tipo_servico" oe="1" sch="schemaA" zr="0"/>
+        <CdTb mn="1" nm="utilizacao_doacao" oe="0" sch="schemaA" zr="1"/>
+        <ClPr cdCl="tipo_servico_id" prCl="id"/>
+      </Fk>
+      <UniqueConstraints/>
+      <SchTrHis/>
+    </Tbl>
+    <CustomTypes/>
+  </Sch>
+  <Dgm nm="diagramA">
+    <RnCf ClkAct="true" FtSz="11" lkStgy="RightAngleStrategy" zm="0.75">
+      <VbCfg>
+        <Fg ky="Auto Number" vl="0"/>
+        <Fg ky="Check" vl="0"/>
+        <Fg ky="Comment" vl="0"/>
+        <Fg ky="Data Type" vl="1"/>
+        <Fg ky="Default" vl="0"/>
+        <Fg ky="ENUM Values" vl="0"/>
+        <Fg ky="Length" vl="1"/>
+        <Fg ky="Name" vl="1"/>
+        <Fg ky="Nullable" vl="0"/>
+        <Fg ky="Schema Name" vl="0"/>
+        <Fg ky="Signed" vl="0"/>
+      </VbCfg>
+    </RnCf>
+    <DiaProps>
+      <Show AllCols="1" FkCols="1" FkNms="1" PkCols="1"/>
+      <ErNotation>BarkerErNotation</ErNotation>
+      <DbTableRectangleFill>HeaderFooterFill</DbTableRectangleFill>
+      <svg path=""/>
+    </DiaProps>
+    <TbGl bkCl="ff6666ff" sch="schemaA" tbl="pessoa" x="173" y="234"/>
+    <TbGl bkCl="ff6666ff" sch="schemaA" tbl="municipio" x="1151" y="45"/>
+    <TbGl bkCl="ff6666ff" sch="schemaA" tbl="estado" x="1586" y="46"/>
+    <TbGl bkCl="ff6666ff" sch="schemaA" tbl="paciente" x="355" y="439"/>
+    <TbGl bkCl="ff6666ff" sch="schemaA" tbl="acompanhante" x="0" y="498"/>
+    <TbGl bkCl="ff6666ff" sch="schemaA" tbl="doador" x="1137" y="183"/>
+    <TbGl bkCl="ff6666ff" sch="schemaA" tbl="servico" x="732" y="468"/>
+    <TbGl bkCl="ff6666ff" sch="schemaA" tbl="clinica" x="550" y="944"/>
+    <TbGl bkCl="ff6666ff" sch="schemaA" tbl="doacao" x="1135" y="386"/>
+    <TbGl bkCl="ff6666ff" sch="schemaA" tbl="tipo_servico" x="750" y="678"/>
+    <TbGl bkCl="ff6666ff" sch="schemaA" tbl="utilizacao_doacao" x="1136" y="662"/>
+    <TbGl bkCl="ff6666ff" sch="schemaA" tbl="endereco" x="164" y="37"/>
+    <TbGl bkCl="ff6666ff" sch="schemaA" tbl="tratamento" x="334" y="717"/>
+    <TbGl bkCl="ff6666ff" sch="schemaA" tbl="tipo_cancer" x="275" y="953"/>
+    <TbGl bkCl="ff6666ff" sch="schemaA" tbl="tipo_doacao" x="1646" y="400"/>
+    <TbGl bkCl="ff6666ff" sch="schemaA" tbl="usuario" x="1031" y="999"/>
+    <TbGl bkCl="ff6666ff" sch="schemaA" tbl="auditoria" x="1000" y="1215"/>
+    <FkGl bkCl="ff000000" childEdge="NORTH" nm="schemaA.acompanhante.fk_acompanhate_pessoa" parentEdge="SOUTH" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="206" x2="206" y1="378" y2="498"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="NORTH" nm="schemaA.auditoria.fk_auditoria_usuario" parentEdge="SOUTH" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="1144" x2="1144" y1="1091" y2="1215"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="NORTH" nm="schemaA.doacao.fk_doacao_doador" parentEdge="SOUTH" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="1273" x2="1273" y1="301" y2="386"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="EAST" nm="schemaA.doacao.fk_doacao_tipo_doacao" parentEdge="WEST" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="1646" x2="1388" y1="441" y2="441"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="NORTH" nm="schemaA.doador.fk_doador_municipio" parentEdge="SOUTH" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="1258" x2="1258" y1="124" y2="183"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="EAST" nm="schemaA.endereco.fk_endereco_municipio" parentEdge="WEST" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="1151" x2="414" y1="71" y2="71"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="EAST" nm="schemaA.municipio.fk_municipio_estado" parentEdge="WEST" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="1586" x2="1377" y1="78" y2="78"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="WEST" nm="schemaA.paciente.fk_paciente_acompanhate" parentEdge="EAST" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="242" x2="355" y1="546" y2="546"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="NORTH" nm="schemaA.paciente.fk_paciente_pessoa" parentEdge="SOUTH" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="370" x2="370" y1="378" y2="439"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="SOUTH" nm="schemaA.paciente.fk_paciente_tratamento" parentEdge="NORTH" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="576" x2="576" y1="717" y2="635"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="NORTH" nm="schemaA.pessoa.fk_pessoa_municipio" parentEdge="SOUTH" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="285" x2="285" y1="168" y2="234"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="WEST" nm="schemaA.servico.fk_servico_paciente" parentEdge="EAST" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="609" x2="732" y1="541" y2="541"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="SOUTH" nm="schemaA.servico.fk_servico_tipo_servico" parentEdge="NORTH" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="839" x2="839" y1="678" y2="573"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="SOUTH" nm="schemaA.tratamento.fk_tipo_cancer_clinica" parentEdge="NORTH" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="374" x2="374" y1="953" y2="874"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="SOUTH" nm="schemaA.tratamento.fk_tratamento_clinica" parentEdge="NORTH" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="555" x2="555" y1="944" y2="874"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="NORTH" nm="schemaA.tratamento.fk_tratamento_paciente" parentEdge="SOUTH" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="360" x2="360" y1="635" y2="717"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="NORTH" nm="schemaA.utilizacao_doacao.fk_utilizacao_doacao_doacao" parentEdge="SOUTH" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="1285" x2="1285" y1="491" y2="662"/>
+      </positionableLines>
+    </FkGl>
+    <FkGl bkCl="ff000000" childEdge="WEST" nm="schemaA.utilizacao_doacao.fk_utilizacao_doacao_tipo_servico" parentEdge="EAST" positioner="OneLineUserLinkPositioner">
+      <positionableLines>
+        <positionableLine lineRole="SINGLE_LINE" x1="976" x2="1136" y1="705" y2="705"/>
+      </positionableLines>
+    </FkGl>
+    <Notes/>
+    <Zones>
+      <Zone bkCl="ffece9d8" h="461" nm="usuario e auditoria" w="439" x="905" y="931"/>
+    </Zones>
+  </Dgm>
+  <RnmMgr NxRnmId="3">
+    <RnmCh ObjCls="Table" ParCls="Schema" ParNme="schemaA" SupCls="" SupNme="">
+      <Rnm id="3" nNm="utilizacao_doacao" oNm="lancamento_doacao"/>
+      <Rnm id="1" nNm="lancamento_doacao" oNm="lancamento_doacoes"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="doacao" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="2" nNm="tipo_doacao_id" oNm="tipo_doacao"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="auditoria" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="2" nNm="rotina" oNm="rotina_id"/>
+      <Rnm id="0" nNm="rotina_id" oNm="id_rotina"/>
+    </RnmCh>
+    <RnmCh ObjCls="Column" ParCls="Table" ParNme="auditoria" SupCls="Schema" SupNme="schemaA">
+      <Rnm id="1" nNm="usuario_id" oNm="id_usuario"/>
+    </RnmCh>
+  </RnmMgr>
+  <DbDocOptionMgr>
+    <BasicOptionMgr>
+      <Name>db.doc.option.mgr</Name>
+      <BoolOpt lbl="Diagrams" nm="doc.diagrams" on="1" spl="0"/>
+      <BoolOpt lbl="Foreign Keys" nm="doc.fks" on="1" spl="0"/>
+      <BoolOpt lbl="Indexes" nm="doc.indexes" on="1" spl="0"/>
+      <BoolOpt lbl="Overwrite CSS File" nm="doc.overwrite.css" on="1" spl="0"/>
+      <BoolOpt lbl="Procedures" nm="doc.procs" on="1" spl="0"/>
+      <BoolOpt lbl="Schemas" nm="doc.schemas" on="1" spl="0"/>
+      <BoolOpt lbl="Sequences" nm="doc.sequences" on="1" spl="0"/>
+      <BoolOpt lbl="Tables" nm="doc.tables" on="1" spl="0"/>
+      <BoolOpt lbl="Triggers" nm="doc.triggers" on="1" spl="0"/>
+      <BoolOpt lbl="Views" nm="doc.views" on="1" spl="0"/>
+    </BasicOptionMgr>
+  </DbDocOptionMgr>
+  <OpenEditors>
+    <OpenEditor ClsNm="Diagram" fqn="null.diagramA" selected="1"/>
+  </OpenEditors>
+  <TreePaths>
+    <TreePath/>
+    <TreePath>/Schemas (1)</TreePath>
+    <TreePath>/Diagrams (1)</TreePath>
+  </TreePaths>
+  <SqlTexts/>
+</Db>
