@@ -5,6 +5,7 @@
  */
 package jadsongonzaga.organize;
 
+import jadsongonzaga.organize.model.Usuario;
 import jadsongonzaga.organize.view.LoginView;
 
 /**
@@ -13,6 +14,7 @@ import jadsongonzaga.organize.view.LoginView;
  */
 public class Organize {
 
+    public static Usuario USUARIO;
     /**
      * @param args the command line arguments
      */
