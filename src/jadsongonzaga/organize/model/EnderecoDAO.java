@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -23,7 +24,7 @@ public class EnderecoDAO {
     public void inserir(Endereco endereco) throws SQLException {
         conexao = new Conexao().conectar();
         String sql = "INSERT INTO endereco (cep, logradouro, numero, ponto_referencia, municipio_id, bairro) VALUES (?,?,?,?,?,?)";
-        PreparedStatement pst = conexao.prepareStatement(sql);
+        PreparedStatement pst = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         pst.setString(1, endereco.getCep());
         pst.setString(2, endereco.getLogradouro());
         pst.setString(3, endereco.getNumero());

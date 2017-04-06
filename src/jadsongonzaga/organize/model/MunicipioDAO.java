@@ -57,6 +57,23 @@ public class MunicipioDAO {
         return municipios;
     }
     
-    
+    public List<Municipio> obter(Estado estado) throws SQLException{
+        List<Municipio> municipios = new ArrayList<>();
+        Municipio municipio;
+        conexao = new Conexao().conectar();
+        String sql = "SELECT nome, id FROM municipio WHERE estado_id = ?";
+        PreparedStatement pst = conexao.prepareStatement(sql);
+        pst.setInt(1, estado.getId());
+        ResultSet rs = pst.executeQuery();
+        while(rs.next()){
+            municipio = new Municipio();
+            municipio.setId(rs.getInt("id"));
+            municipio.setNome(rs.getString("nome"));
+            municipio.setEstado(estado);
+            municipios.add(municipio);
+        }
+        
+        return municipios;
+    }
     
 }

@@ -36,6 +36,17 @@ public class EnderecoController {
         }
 
     }
+    
+     public void excluir(Endereco endereco) {
+        try {
+
+            dao.excluir(endereco);
+            auditoria.salvarDeletar(endereco.getId(), Auditoria.Rotina.PESSOA);
+
+        } catch (SQLException ex) {
+            ExceptionController.tratar(ex, endereco);
+        }
+    }
 
     public Endereco obter(int id) {
 

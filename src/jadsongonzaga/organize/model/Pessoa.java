@@ -6,14 +6,14 @@ package jadsongonzaga.organize.model;
  * @author jadson
  */
 public class Pessoa {
-   int id;
-   String nome;
-   String rg;
-   String profissao;
-   String telefone;
-   String celular;
-   String email;
-   Endereco endereco;
+   private int id;
+   private String nome;
+   private String rg;
+   private String profissao;
+   private String telefone;
+   private String celular;
+   private String email;
+   private Endereco endereco;
 
     public int getId() {
         return id;

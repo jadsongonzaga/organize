@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
@@ -18,7 +19,13 @@ import java.sql.SQLException;
 public class PessoaDAO {
 
     Connection conexao;
+    EnderecoDAO enderecoDAO;
 
+    public PessoaDAO() {
+        enderecoDAO = new EnderecoDAO();
+    }
+    
+    
     /**
      * Persiste um Pessoa, atualiza o ID da referencia
      *
@@ -26,9 +33,10 @@ public class PessoaDAO {
      * @throws SQLException
      */
     public void inserir(Pessoa pessoa) throws SQLException {
+        enderecoDAO.inserir(pessoa.getEndereco());
         conexao = new Conexao().conectar();
-        String sql = "INSERT INTO pessoa (nome, rg, profissao, telefone, celular, email, endereco_id) VALUES (?,?,?,?,?,?,?)";
-        PreparedStatement pst = conexao.prepareStatement(sql);
+        String sql = "INSERT INTO pessoa (nome, rg, profissao, telefone, celular, email, endereco_id) VALUES (?,?,?,?,?,?,?)";       
+        PreparedStatement pst = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         pst.setString(1, pessoa.getNome());
         pst.setString(2, pessoa.getRg());
         pst.setString(3, pessoa.getProfissao());
@@ -52,6 +60,8 @@ public class PessoaDAO {
      * @throws SQLException
      */
     public void alterar(Pessoa pessoa) throws SQLException {
+        
+        enderecoDAO.alterar(pessoa.getEndereco());
         conexao = new Conexao().conectar();
         String sql = "UPDATE pessoa SET nome = ?, rg = ?, profissao = ?, telefone = ?, celular = ?, email = ?, endereco_id = ? WHERE id = ?";
         PreparedStatement pst = conexao.prepareStatement(sql);
@@ -80,6 +90,8 @@ public class PessoaDAO {
         pst.execute();
 
         conexao.close();
+        
+        enderecoDAO.excluir(pessoa.getEndereco());
     }
 
     /**
@@ -112,13 +124,15 @@ public class PessoaDAO {
                     + "  en.bairro,"
                     + "  mun.nome as nome_municipio,"
                     + "  mun.estado_id,"
-                    + "  est.nome as nome_estado"
+                    + "  est.nome as nome_estado "
                     + "FROM"
                     + "  pessoa pes"
                     + "  INNER JOIN endereco en ON pes.endereco_id = en.id"
                     + "  INNER JOIN municipio mun ON en.municipio_id = mun.id"
-                    + "  INNER JOIN estado est ON mun.estado_id = est.id";
-
+                    + "  INNER JOIN estado est ON mun.estado_id = est.id "
+                    + "WHERE"
+                    + "  pes.id = ?";
+        
         PreparedStatement pst = conexao.prepareStatement(sql);
         pst.setInt(1, id);
         ResultSet rs = pst.executeQuery();
@@ -127,10 +141,10 @@ public class PessoaDAO {
             endereco = new Endereco();
             estado = new Estado();
             municipio = new Municipio();
-            pessoa.setId(id);
-         
+            
             estado.setId(rs.getInt("estado_id"));
             estado.setNome(rs.getString("nome_estado"));
+            
             municipio.setId(rs.getInt("municipio_id"));
             municipio.setNome(rs.getString("nome_municipio"));
             municipio.setEstado(estado);
@@ -141,7 +155,16 @@ public class PessoaDAO {
             endereco.setNumero(rs.getString("numero"));
             endereco.setPontoReferencia(rs.getString("ponto_referencia"));
             endereco.setMunicipio(municipio);
-            endereco.setBairro(rs.getString("bairro")); 
+            endereco.setBairro(rs.getString("bairro"));
+            
+            pessoa.setId(id);
+            pessoa.setCelular(rs.getString("celular"));
+            pessoa.setEmail(rs.getString("email"));
+            pessoa.setNome(rs.getString("nome"));
+            pessoa.setProfissao(rs.getString("profissao"));
+            pessoa.setRg(rs.getString("rg"));
+            pessoa.setTelefone(rs.getString("telefone"));
+            
             
         }
 

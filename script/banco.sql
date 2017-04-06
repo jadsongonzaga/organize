@@ -48,12 +48,11 @@ CREATE TABLE pessoa
 
 CREATE TABLE acompanhante
 (
-    id                      SERIAL NOT NULL,
+    id                      INTEGER NOT NULL,
     grau_parentesco         INTEGER NOT NULL,
-    pessoa_id               INTEGER NOT NULL,
     data_criacao            TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     CONSTRAINT pk_acompanhante PRIMARY KEY (id),
-    CONSTRAINT fk_acompanhate_pessoa FOREIGN KEY (pessoa_id) REFERENCES pessoa(id)
+    CONSTRAINT fk_acompanhate_pessoa FOREIGN KEY (id) REFERENCES pessoa(id)
 );
 
 CREATE TABLE clinica

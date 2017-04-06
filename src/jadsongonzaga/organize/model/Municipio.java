@@ -35,5 +35,15 @@ public class Municipio {
         this.estado = estado;
     }
 
+    @Override
+    public String toString() {
+        return this.nome + " - " + this.estado.getNome();
+    }
 
+    @Override
+    public boolean equals(Object obj) {
+        return this.id == ((Municipio) obj).getId();
+    }
+
+    
 }
