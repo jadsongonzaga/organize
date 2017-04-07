@@ -5,6 +5,12 @@
  */
 package jadsongonzaga.organize.view;
 
+import jadsongonzaga.organize.controller.BuscaController;
+import jadsongonzaga.organize.model.Busca;
+import java.util.List;
+import java.util.Map;
+import javax.swing.table.TableModel;
+
 /**
  *
  * @author jadson
@@ -17,8 +23,12 @@ public class Buscar extends javax.swing.JDialog {
     public Buscar(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-    }
 
+        model = new BuscaTableModel(controller.getDados());
+        jtbResultado.setModel(model);
+        comboCondicoes();
+        comboOrdem();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -34,10 +44,10 @@ public class Buscar extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         jbPesquisar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jcOrdem = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
+        jcCondicao = new javax.swing.JComboBox<>();
+        jtPesquisa = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -60,16 +70,19 @@ public class Buscar extends javax.swing.JDialog {
         jScrollPane1.setViewportView(jtbResultado);
 
         jbPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jadsongonzaga/organize/view/icones/ic_search_black_18dp_1x.png"))); // NOI18N
+        jbPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbPesquisarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Ordenar por");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcOrdem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel2.setText("Pesquisar por:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jTextField1.setText("jTextField1");
+        jcCondicao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -78,13 +91,13 @@ public class Buscar extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jcOrdem, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jcCondicao, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1)
+                .addComponent(jtPesquisa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbPesquisar)
                 .addContainerGap())
@@ -95,10 +108,10 @@ public class Buscar extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox1)
+                    .addComponent(jcOrdem)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox2)
-                    .addComponent(jTextField1)
+                    .addComponent(jcCondicao)
+                    .addComponent(jtPesquisa)
                     .addComponent(jbPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -107,7 +120,7 @@ public class Buscar extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 971, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 888, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -130,6 +143,13 @@ public class Buscar extends javax.swing.JDialog {
         }
 
     }//GEN-LAST:event_jtbResultadoMouseClicked
+
+    private void jbPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPesquisarActionPerformed
+
+
+        buscarCodicao();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbPesquisarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,18 +194,20 @@ public class Buscar extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton jbPesquisar;
+    private javax.swing.JComboBox<String> jcCondicao;
+    private javax.swing.JComboBox<String> jcOrdem;
+    private javax.swing.JTextField jtPesquisa;
     private javax.swing.JTable jtbResultado;
     // End of variables declaration//GEN-END:variables
 
     private int id;
+    BuscaController controller = new BuscaController();
+    BuscaTableModel model;
 
     private void buscar() {
         int linha = jtbResultado.getSelectedRow();
@@ -200,4 +222,26 @@ public class Buscar extends javax.swing.JDialog {
     public int getCodigo() {
         return this.id;
     }
+
+    private void comboCondicoes() {
+        jcCondicao.setModel(controller.obterModelComboCondicoes());
+    }
+
+    private void comboOrdem() {
+        jcOrdem.setModel(controller.obterModelComboOrdens());
+    }
+
+    private void buscarCodicao() {
+        Busca ordem = (Busca) jcOrdem.getSelectedItem();
+        Busca condicao = (Busca) jcCondicao.getSelectedItem();;
+        String valor = jtPesquisa.getText();
+        
+        List<Map<String, Object>> retorno = controller.getDados(ordem, condicao, valor);
+        if(retorno.size() > 0)
+            model = new BuscaTableModel(retorno);
+        else
+            model = new BuscaTableModel();
+        jtbResultado.setModel(model);
+    }
+
 }

@@ -47,4 +47,10 @@ public class Utils {
         return df.format(valor);
     }
     
+    public static String capitalize(String texto){
+        
+        
+        return texto.substring(0, 1).toUpperCase() + texto.substring(1);
+    }
+    
 }

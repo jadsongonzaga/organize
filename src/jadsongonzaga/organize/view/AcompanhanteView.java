@@ -421,7 +421,7 @@ public class AcompanhanteView extends javax.swing.JDialog {
         jcEstado.setModel(controllerEstado.obterModelCombo());
         carregarMunicipios();
         carregarGrauParentesco();
-        evtNovo();
+        modoInicial();
 
     }
 
@@ -502,7 +502,21 @@ public class AcompanhanteView extends javax.swing.JDialog {
         UtilsView.limpaComponentes(panelEndereco);
         UtilsView.limpaComponentes(panelAcompanhante);
         jtNome.grabFocus();
+        UtilsView.habilitaComponentes(panelPessoa, true);
+        UtilsView.habilitaComponentes(panelEndereco, true);
+        UtilsView.habilitaComponentes(panelAcompanhante, true);
     }
+    
+    private void modoInicial() {
+        UtilsView.limpaComponentes(panelPessoa);
+        UtilsView.limpaComponentes(panelEndereco);
+        UtilsView.limpaComponentes(panelAcompanhante);
+        jtNome.grabFocus();
+        UtilsView.habilitaComponentes(panelPessoa, false);
+        UtilsView.habilitaComponentes(panelEndereco, false);
+        UtilsView.habilitaComponentes(panelAcompanhante, false);
+    }
+    
 
     EventosBarraTarefar eventos;
 
@@ -526,9 +540,7 @@ public class AcompanhanteView extends javax.swing.JDialog {
 
             @Override
             public void cancelar() {
-                UtilsView.limpaComponentes(panelPessoa);
-                UtilsView.limpaComponentes(panelEndereco);
-                UtilsView.limpaComponentes(panelAcompanhante);
+                modoInicial();
             }
 
             @Override
