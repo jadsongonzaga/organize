@@ -165,6 +165,8 @@ public class PessoaDAO {
             pessoa.setRg(rs.getString("rg"));
             pessoa.setTelefone(rs.getString("telefone"));
             
+            pessoa.setEndereco(endereco);
+            
             
         }
 

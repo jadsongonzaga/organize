@@ -108,6 +108,11 @@ public class PanelBarraTarefa extends javax.swing.JPanel {
         jbExcluir.setFocusable(false);
         jbExcluir.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jbExcluir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbExcluirActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jbExcluir);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jadsongonzaga/organize/view/icones/ic_search_black_18dp_1x.png"))); // NOI18N
@@ -168,7 +173,15 @@ public class PanelBarraTarefa extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         eventos.pesquisar();
+        modoBuscar();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
+
+        eventos.excluir();
+        modoInicial();
+        
+    }//GEN-LAST:event_jbExcluirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -221,7 +234,7 @@ public class PanelBarraTarefa extends javax.swing.JPanel {
         jbSalvar.setEnabled(false);
         jbCancelar.setEnabled(true);
 
-        jbExcluir.setEnabled(false);
+        jbExcluir.setEnabled(true);
         jbNovo.setEnabled(true);
         jbEditar.setEnabled(true);
     }

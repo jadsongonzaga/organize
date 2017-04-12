@@ -6,6 +6,7 @@
 package jadsongonzaga.organize.view;
 
 import jadsongonzaga.organize.controller.AcompanhanteController;
+import jadsongonzaga.organize.controller.BuscaAcompanhanteController;
 import jadsongonzaga.organize.controller.ClienteViaCepWS;
 import jadsongonzaga.organize.controller.EstadoController;
 import jadsongonzaga.organize.controller.MunicipioController;
@@ -26,6 +27,8 @@ public class AcompanhanteView extends javax.swing.JDialog {
 
     /**
      * Creates new form AcompanhanteView
+     * @param parent
+     * @param modal
      */
     public AcompanhanteView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -321,6 +324,7 @@ public class AcompanhanteView extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtCepFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtCepFocusLost
@@ -415,6 +419,8 @@ public class AcompanhanteView extends javax.swing.JDialog {
 
     EstadoController controllerEstado = new EstadoController();
     AcompanhanteController controller = new AcompanhanteController();
+    Acompanhante acompanhate;
+    private boolean novo = true;
 
     private void iniciar() {
 
@@ -496,6 +502,19 @@ public class AcompanhanteView extends javax.swing.JDialog {
         acompanhante.setGrauParentesco((Acompanhante.GrauParentesco) jcGrauParentesco.getSelectedItem());
         return acompanhante;
     }
+    
+    private Acompanhante setAcompanhante(Acompanhante acompanhante) {
+        
+        jcGrauParentesco.setSelectedItem(acompanhante.getGrauParentesco());
+        return acompanhante;
+    }
+    
+    private void carregarDados(int id){
+        acompanhate = controller.obter(id);
+        setAcompanhante(acompanhate);
+        setPessoa(acompanhate.getPessoa());
+        setEndereco(acompanhate.getPessoa().getEndereco());
+    }
 
     private void evtNovo() {
         UtilsView.limpaComponentes(panelPessoa);
@@ -515,8 +534,16 @@ public class AcompanhanteView extends javax.swing.JDialog {
         UtilsView.habilitaComponentes(panelPessoa, false);
         UtilsView.habilitaComponentes(panelEndereco, false);
         UtilsView.habilitaComponentes(panelAcompanhante, false);
+        novo = true;
     }
     
+    private void modoEditar() {
+        
+        UtilsView.habilitaComponentes(panelPessoa, true);
+        UtilsView.habilitaComponentes(panelEndereco, true);
+        UtilsView.habilitaComponentes(panelAcompanhante, true);
+        jtNome.grabFocus();
+    }
 
     EventosBarraTarefar eventos;
 
@@ -525,11 +552,16 @@ public class AcompanhanteView extends javax.swing.JDialog {
             @Override
             public boolean salvar() {
 
-                Acompanhante acompanhante = getAcompanhante();
+                Acompanhante acomp = getAcompanhante();
                 Pessoa pessoa = getPessoa();
+                    
                 pessoa.setEndereco(getEndereco());
-                acompanhante.setPessoa(pessoa);
-                controller.salvar(acompanhante, true);
+                acomp.setPessoa(pessoa);
+                if(!novo){
+                  acomp.getPessoa().getEndereco().setId(acompanhate.getPessoa().getEndereco().getId());
+                }
+                controller.salvar(acomp, novo);
+                modoInicial();
                 return true;
             }
 
@@ -545,18 +577,36 @@ public class AcompanhanteView extends javax.swing.JDialog {
 
             @Override
             public void editar() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                modoEditar();
+                novo = false;
             }
 
             @Override
             public void excluir() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                int op = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o registro de: "+ acompanhate.getPessoa());
+                if(op == 0){
+                    controller.excluir(acompanhate);
+                    modoInicial();
+                }
             }
 
             @Override
             public void pesquisar() {
-
+                evtPesquisar();
             }
         };
     }
+    
+    private void evtPesquisar(){
+        BuscaAcompanhanteController busca = new BuscaAcompanhanteController();
+        
+        Buscar buscar = new Buscar(null, true, busca.getBuscaController());
+        buscar.setVisible(true);
+        int id = buscar.getId();
+        if(id > 0){
+            modoInicial();
+            carregarDados(id);
+        }
+    }
+    
 }

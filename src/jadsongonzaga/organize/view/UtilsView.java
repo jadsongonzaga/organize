@@ -3,7 +3,6 @@ package jadsongonzaga.organize.view;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Component;
 import java.util.List;
-import java.util.Map;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;

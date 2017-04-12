@@ -25,8 +25,6 @@ public class Utils {
         valor = valor.replace(".", "");
         valor = valor.replace(",", ".");
         
-        //1.200,0
-        //
         return Double.parseDouble(valor);
     }
     
@@ -53,4 +51,13 @@ public class Utils {
         return texto.substring(0, 1).toUpperCase() + texto.substring(1);
     }
     
+    /**
+     * Verifica se a string passada só contém números
+     * @param valor
+     * @return 
+     */
+    public static boolean eNumero(String valor){
+        
+        return valor.matches("[0-9]*");
+    }
 }

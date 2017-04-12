@@ -7,6 +7,8 @@ import jadsongonzaga.organize.model.Estado;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -49,6 +51,14 @@ public class AcompanhanteController {
             ExceptionController.tratar(ex);
         }
         return acompanhante;
+    }
+    
+    public void excluir(Acompanhante acompanhante){
+        try {
+            dao.excluir(acompanhante);
+        } catch (SQLException ex) {
+            ExceptionController.tratar(ex, acompanhante);
+        }
     }
 
     public DefaultComboBoxModel obterModelComboParentesco() {

@@ -56,7 +56,7 @@ public class AcompanhanteDAO {
         PreparedStatement pst = conexao.prepareStatement(sql);
 
         pst.setInt(1, acompanhante.getGrauParentesco().getCodigo());
-        pst.setInt(1, acompanhante.getPessoa().getId());
+        pst.setInt(2, acompanhante.getPessoa().getId());
 
         pst.execute();
 

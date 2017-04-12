@@ -6,9 +6,12 @@
 package jadsongonzaga.organize.view;
 
 import jadsongonzaga.organize.controller.BuscaController;
+import jadsongonzaga.organize.controller.Utils;
 import jadsongonzaga.organize.model.Busca;
+import java.awt.event.KeyEvent;
 import java.util.List;
 import java.util.Map;
+import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 
 /**
@@ -16,14 +19,19 @@ import javax.swing.table.TableModel;
  * @author jadson
  */
 public class Buscar extends javax.swing.JDialog {
+    
+    BuscaController controller;
 
     /**
      * Creates new form Buscar
+     * @param parent
+     * @param modal
+     * @param controller
      */
-    public Buscar(java.awt.Frame parent, boolean modal) {
+    public Buscar(java.awt.Frame parent, boolean modal, BuscaController controller) {
         super(parent, modal);
         initComponents();
-
+        this.controller = controller;
         model = new BuscaTableModel(controller.getDados());
         jtbResultado.setModel(model);
         comboCondicoes();
@@ -43,13 +51,14 @@ public class Buscar extends javax.swing.JDialog {
         jtbResultado = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jbPesquisar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jcOrdem = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jcCondicao = new javax.swing.JComboBox<>();
         jtPesquisa = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Pesquisar");
 
         jtbResultado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -76,28 +85,35 @@ public class Buscar extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setText("Ordenar por");
-
         jcOrdem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel2.setText("Pesquisar por:");
 
         jcCondicao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jtPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtPesquisaKeyPressed(evt);
+            }
+        });
+
+        jLabel3.setText("Ordenar por");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jcOrdem, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jcOrdem, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jcCondicao, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jtPesquisa)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jcCondicao, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jtPesquisa, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbPesquisar)
                 .addContainerGap())
@@ -107,12 +123,12 @@ public class Buscar extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jcOrdem)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jcCondicao)
                     .addComponent(jtPesquisa)
-                    .addComponent(jbPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jbPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -120,19 +136,21 @@ public class Buscar extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 888, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 961, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtbResultadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbResultadoMouseClicked
@@ -150,6 +168,14 @@ public class Buscar extends javax.swing.JDialog {
         buscarCodicao();
         // TODO add your handling code here:
     }//GEN-LAST:event_jbPesquisarActionPerformed
+
+    private void jtPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtPesquisaKeyPressed
+
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            buscarCodicao();
+        }
+        
+    }//GEN-LAST:event_jtPesquisaKeyPressed
 
     /**
      * @param args the command line arguments
@@ -181,7 +207,7 @@ public class Buscar extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Buscar dialog = new Buscar(new javax.swing.JFrame(), true);
+                Buscar dialog = new Buscar(new javax.swing.JFrame(), true, null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -194,8 +220,8 @@ public class Buscar extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbPesquisar;
@@ -205,8 +231,7 @@ public class Buscar extends javax.swing.JDialog {
     private javax.swing.JTable jtbResultado;
     // End of variables declaration//GEN-END:variables
 
-    private int id;
-    BuscaController controller = new BuscaController();
+    private int id = 0;
     BuscaTableModel model;
 
     private void buscar() {
@@ -219,7 +244,7 @@ public class Buscar extends javax.swing.JDialog {
      *
      * @return
      */
-    public int getCodigo() {
+    public int getId() {
         return this.id;
     }
 
@@ -236,9 +261,15 @@ public class Buscar extends javax.swing.JDialog {
         Busca condicao = (Busca) jcCondicao.getSelectedItem();;
         String valor = jtPesquisa.getText();
         
-        List<Map<String, Object>> retorno = controller.getDados(ordem, condicao, valor);
-        if(retorno.size() > 0)
-            model = new BuscaTableModel(retorno);
+        if(condicao.getTipoDado() == Busca.TipoDado.INTEIRO && !valor.isEmpty()){
+            if(!Utils.eNumero(valor)){
+                JOptionPane.showMessageDialog(this, "<html>Não foi possível realizar a pesquisa.<br>Você pesquisou por um campo numérico e informou texto</html>");
+                return;
+            }
+        }
+        List<Map<String, Object>> dados = controller.getDados(ordem, condicao, valor);
+        if(dados.size() > 0)
+            model = new BuscaTableModel(dados);
         else
             model = new BuscaTableModel();
         jtbResultado.setModel(model);
