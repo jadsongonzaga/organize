@@ -33,6 +33,7 @@ public class Buscar extends javax.swing.JDialog {
         initComponents();
         this.controller = controller;
         model = new BuscaTableModel(controller.getDados());
+        
         jtbResultado.setModel(model);
         comboCondicoes();
         comboOrdem();
@@ -71,6 +72,7 @@ public class Buscar extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtbResultado.getTableHeader().setReorderingAllowed(false);
         jtbResultado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jtbResultadoMouseClicked(evt);

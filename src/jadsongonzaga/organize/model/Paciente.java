@@ -145,6 +145,12 @@ public class Paciente {
             }
             return null;
         }
+
+        @Override
+        public String toString() {
+            return this.nome;
+        }
+        
         
     }
     
@@ -175,10 +181,15 @@ public class Paciente {
             return null;
         }
         
+        @Override
+        public String toString() {
+            return this.nome;
+        }
+        
     }
     
-    private enum TipoMoradia{
-        PROPIA(1, "Própia"), ALUGADA(2, "Alugada");
+    public enum TipoMoradia{
+        PROPIA(1, "Própia"), ALUGADA(2, "Alugada"), CEDIDA(3, "Cedida");
           
         private final int id;
         private final String nome;
@@ -202,6 +213,11 @@ public class Paciente {
                     return e;
             }
             return null;
+        }
+        
+        @Override
+        public String toString() {
+            return this.nome;
         }
         
     }

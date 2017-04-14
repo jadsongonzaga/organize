@@ -70,7 +70,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
 
-        AcompanhanteView acompanhante = new AcompanhanteView(this, false);
+        AcompanhanteView acompanhante = new AcompanhanteView(this, false, false);
         acompanhante.setLocationRelativeTo(this);
         acompanhante.setVisible(true);
         

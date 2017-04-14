@@ -105,12 +105,12 @@ CREATE TABLE paciente
     tipo_moradia            INTEGER DEFAULT 1 NOT NULL,
     recebe_renda            BOOL DEFAULT false NOT NULL,
     observacao              VARCHAR(100) NULL,
-    acompanhate_id          INTEGER NULL,
+    acompanhante_id          INTEGER NULL,
     tratamento_id           INTEGER NULL,
     pessoa_id               INTEGER NOT NULL,
     data_criacao            TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     CONSTRAINT pk_paciente PRIMARY KEY (id),
-    CONSTRAINT fk_paciente_acompanhate FOREIGN KEY (acompanhate_id) REFERENCES acompanhante (id),
+    CONSTRAINT fk_paciente_acompanhate FOREIGN KEY (acompanhante_id) REFERENCES acompanhante (id),
     CONSTRAINT fk_paciente_pessoa FOREIGN KEY (id) REFERENCES pessoa (id)
 );
 

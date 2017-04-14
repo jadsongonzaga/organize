@@ -1,17 +1,19 @@
 
 package jadsongonzaga.organize.view;
 
-import jadsongonzaga.organize.controller.AcompanhanteController;
 import jadsongonzaga.organize.controller.BuscaAcompanhanteController;
+import jadsongonzaga.organize.controller.BuscaPacienteController;
 import jadsongonzaga.organize.controller.ClienteViaCepWS;
 import jadsongonzaga.organize.controller.EstadoController;
 import jadsongonzaga.organize.controller.MunicipioController;
+import jadsongonzaga.organize.controller.PacienteController;
 import jadsongonzaga.organize.controller.Utils;
 import jadsongonzaga.organize.exception.CepNaoEncontradoException;
 import jadsongonzaga.organize.model.Acompanhante;
 import jadsongonzaga.organize.model.Endereco;
 import jadsongonzaga.organize.model.Estado;
 import jadsongonzaga.organize.model.Municipio;
+import jadsongonzaga.organize.model.Paciente;
 import jadsongonzaga.organize.model.Pessoa;
 import javax.swing.JOptionPane;
 
@@ -19,20 +21,18 @@ import javax.swing.JOptionPane;
  *
  * @author jadson
  */
-public class AcompanhanteView extends javax.swing.JDialog {
+public class PacienteView extends javax.swing.JDialog {
 
     /**
      * Creates new form AcompanhanteView
      * @param parent
      * @param modal
-     * @param vinculado - Caso o fomulário seja vinvulado a outro formulário, e ao salvar ele deve fechar
      */
-    public AcompanhanteView(java.awt.Frame parent, boolean modal, boolean vinculado) {
+    public PacienteView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         acao();
         initComponents();
         iniciar();
-        this.vinculado = vinculado;
     }
 
     /**
@@ -47,7 +47,26 @@ public class AcompanhanteView extends javax.swing.JDialog {
         panelBarraTarefa = new jadsongonzaga.organize.view.PanelBarraTarefa(eventos);
         panelAcompanhante = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jcGrauParentesco = new javax.swing.JComboBox<>();
+        jcEscolaridade = new javax.swing.JComboBox<>();
+        jdDataNascimento = new com.toedter.calendar.JDateChooser();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jcEstadoCivil = new javax.swing.JComboBox<>();
+        jLabel17 = new javax.swing.JLabel();
+        jtQuantidadeFilhos = new javax.swing.JFormattedTextField();
+        jLabel18 = new javax.swing.JLabel();
+        jtConjuge = new javax.swing.JTextField();
+        jcTipoMoradia = new javax.swing.JComboBox<>();
+        jLabel19 = new javax.swing.JLabel();
+        jchRecebeRenda = new javax.swing.JCheckBox();
+        jLabel20 = new javax.swing.JLabel();
+        jtObservacao = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel22 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jtAcompanhante = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
         panelPessoa = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -78,34 +97,163 @@ public class AcompanhanteView extends javax.swing.JDialog {
         jcMunicipio = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Acompanhante");
+        setTitle("Paciente");
         setResizable(false);
 
-        panelAcompanhante.setBorder(javax.swing.BorderFactory.createTitledBorder("Acompanhante"));
+        panelAcompanhante.setBorder(javax.swing.BorderFactory.createTitledBorder("Paciente"));
 
-        jLabel1.setText("Grau de parentesto");
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel1.setText("Data de nascimento");
 
-        jcGrauParentesco.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcEscolaridade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel15.setText("Escolaridade");
+
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel16.setText("Estado civil");
+
+        jcEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel17.setText("Quandidade de filhos");
+
+        jtQuantidadeFilhos.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+
+        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel18.setText("Cônjuge");
+
+        jtConjuge.setText("jTextField1");
+
+        jcTipoMoradia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel19.setText("Tipo de moradia");
+
+        jchRecebeRenda.setText("Recebe renda");
+
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel20.setText("Observação");
+
+        jtObservacao.setText("jTextField2");
+
+        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel21.setText("Acompante");
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jadsongonzaga/organize/view/icones/ic_search_black_18dp_1x.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel22.setText("Tratamento");
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jadsongonzaga/organize/view/icones/ic_search_black_18dp_1x.png"))); // NOI18N
+
+        jtAcompanhante.setEditable(false);
+        jtAcompanhante.setText("jTextField1");
+
+        jTextField1.setText("jTextField1");
 
         javax.swing.GroupLayout panelAcompanhanteLayout = new javax.swing.GroupLayout(panelAcompanhante);
         panelAcompanhante.setLayout(panelAcompanhanteLayout);
         panelAcompanhanteLayout.setHorizontalGroup(
             panelAcompanhanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelAcompanhanteLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAcompanhanteLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jcGrauParentesco, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panelAcompanhanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel18)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel16)
+                    .addComponent(jLabel19)
+                    .addComponent(jLabel21)
+                    .addComponent(jLabel20))
+                .addGap(4, 4, 4)
+                .addGroup(panelAcompanhanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAcompanhanteLayout.createSequentialGroup()
+                        .addGroup(panelAcompanhanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jcEstadoCivil, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jdDataNascimento, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelAcompanhanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelAcompanhanteLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(4, 4, 4)
+                        .addGroup(panelAcompanhanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jtQuantidadeFilhos, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jcEscolaridade, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAcompanhanteLayout.createSequentialGroup()
+                        .addGap(0, 1, Short.MAX_VALUE)
+                        .addGroup(panelAcompanhanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jtObservacao)
+                            .addGroup(panelAcompanhanteLayout.createSequentialGroup()
+                                .addGroup(panelAcompanhanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(panelAcompanhanteLayout.createSequentialGroup()
+                                        .addGroup(panelAcompanhanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jcTipoMoradia, 0, 249, Short.MAX_VALUE)
+                                            .addComponent(jtAcompanhante))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(60, 60, 60)
+                                        .addComponent(jLabel22)
+                                        .addGap(3, 3, 3)
+                                        .addGroup(panelAcompanhanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jchRecebeRenda)
+                                            .addGroup(panelAcompanhanteLayout.createSequentialGroup()
+                                                .addComponent(jTextField1)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jtConjuge, javax.swing.GroupLayout.PREFERRED_SIZE, 653, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap())))))
         );
         panelAcompanhanteLayout.setVerticalGroup(
             panelAcompanhanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelAcompanhanteLayout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(panelAcompanhanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelAcompanhanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jcEscolaridade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelAcompanhanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jdDataNascimento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelAcompanhanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelAcompanhanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtQuantidadeFilhos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jcEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panelAcompanhanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jtConjuge)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelAcompanhanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jcGrauParentesco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jcTipoMoradia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel19)
+                    .addComponent(jchRecebeRenda))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelAcompanhanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelAcompanhanteLayout.createSequentialGroup()
+                        .addGroup(panelAcompanhanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel21)
+                            .addGroup(panelAcompanhanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel22)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtAcompanhante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelAcompanhanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel20)
+                            .addComponent(jtObservacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8))
         );
 
         panelPessoa.setBorder(javax.swing.BorderFactory.createTitledBorder("Pessoa"));
@@ -162,18 +310,18 @@ public class AcompanhanteView extends javax.swing.JDialog {
                         .addGroup(panelPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jtRg, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtTelefone, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE))
-                        .addGap(57, 57, 57)
-                        .addGroup(panelPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel8))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
                         .addGroup(panelPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtRg1)
-                            .addComponent(jtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(2, 2, 2)
+                        .addGroup(panelPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jtCelular, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                            .addComponent(jtRg1)))
                     .addComponent(jtId, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 617, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jtEmail)
+                    .addComponent(jtNome))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         panelPessoaLayout.setVerticalGroup(
             panelPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,7 +413,7 @@ public class AcompanhanteView extends javax.swing.JDialog {
                 .addGroup(panelEnderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jtBairro)
                     .addComponent(jtLogradouro)
-                    .addComponent(jcMunicipio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jcMunicipio, 0, 432, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panelEnderecoLayout.setVerticalGroup(
@@ -300,12 +448,15 @@ public class AcompanhanteView extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(panelEndereco, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 824, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 824, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(panelAcompanhante, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelEndereco, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 743, Short.MAX_VALUE)
-                    .addComponent(panelPessoa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 743, Short.MAX_VALUE)
-                    .addComponent(panelBarraTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelBarraTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, 836, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelAcompanhante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -318,7 +469,7 @@ public class AcompanhanteView extends javax.swing.JDialog {
                 .addComponent(panelEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelAcompanhante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -338,6 +489,12 @@ public class AcompanhanteView extends javax.swing.JDialog {
         carregarMunicipios();
     }//GEN-LAST:event_jcEstadoActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        acompanhante();
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -355,20 +512,21 @@ public class AcompanhanteView extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AcompanhanteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PacienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AcompanhanteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PacienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AcompanhanteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PacienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AcompanhanteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PacienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                AcompanhanteView dialog = new AcompanhanteView(new javax.swing.JFrame(), true, false);
+                PacienteView dialog = new PacienteView(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -381,13 +539,23 @@ public class AcompanhanteView extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -395,17 +563,26 @@ public class AcompanhanteView extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JComboBox<String> jcEscolaridade;
     private javax.swing.JComboBox jcEstado;
-    private javax.swing.JComboBox<String> jcGrauParentesco;
+    private javax.swing.JComboBox<String> jcEstadoCivil;
     private javax.swing.JComboBox jcMunicipio;
+    private javax.swing.JComboBox<String> jcTipoMoradia;
+    private javax.swing.JCheckBox jchRecebeRenda;
+    private com.toedter.calendar.JDateChooser jdDataNascimento;
+    private javax.swing.JTextField jtAcompanhante;
     private javax.swing.JTextField jtBairro;
     private javax.swing.JFormattedTextField jtCelular;
     private javax.swing.JFormattedTextField jtCep;
+    private javax.swing.JTextField jtConjuge;
     private javax.swing.JTextField jtEmail;
     private javax.swing.JTextField jtId;
     private javax.swing.JTextField jtLogradouro;
     private javax.swing.JTextField jtNome;
     private javax.swing.JTextField jtNumero;
+    private javax.swing.JTextField jtObservacao;
+    private javax.swing.JFormattedTextField jtQuantidadeFilhos;
     private javax.swing.JTextField jtRg;
     private javax.swing.JTextField jtRg1;
     private javax.swing.JFormattedTextField jtTelefone;
@@ -416,16 +593,16 @@ public class AcompanhanteView extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     EstadoController controllerEstado = new EstadoController();
-    AcompanhanteController controller = new AcompanhanteController();
-    private Acompanhante acompanhante;
+    PacienteController controller = new PacienteController();
+    Paciente paciente;
     private boolean novo = true;
-    boolean vinculado;
+    Acompanhante acompanhante;
 
     private void iniciar() {
 
         jcEstado.setModel(controllerEstado.obterModelCombo());
         carregarMunicipios();
-        carregarGrauParentesco();
+        carregarCombos();
         modoInicial();
 
     }
@@ -435,8 +612,10 @@ public class AcompanhanteView extends javax.swing.JDialog {
         jcMunicipio.setModel(new MunicipioController().obterModelCombo(obj));
     }
 
-    private void carregarGrauParentesco() {
-        jcGrauParentesco.setModel(controller.obterModelComboParentesco());
+    private void carregarCombos() {
+        jcEscolaridade.setModel(controller.obterModelComboEscolaridade());
+        jcEstadoCivil.setModel(controller.obterModelComboEstadoCivil());
+        jcTipoMoradia.setModel(controller.obterModelComboTipoMoradia());
     }
 
     private void evtBuscaCep() {
@@ -492,26 +671,61 @@ public class AcompanhanteView extends javax.swing.JDialog {
         pessoa.setNome(jtNome.getText());
         pessoa.setEmail(jtEmail.getText());
         pessoa.setTelefone(Utils.removeFormatacao(jtTelefone.getText()));
+        pessoa.setEndereco(getEndereco());
 
         return pessoa;
     }
 
-    private Acompanhante getAcompanhante() {
-        Acompanhante acompanhante = new Acompanhante();
-        acompanhante.setGrauParentesco((Acompanhante.GrauParentesco) jcGrauParentesco.getSelectedItem());
-        return acompanhante;
+    private Paciente getPaciente() {
+        Paciente paci = new Paciente();
+        paci.setAcompanhante(acompanhante);
+        System.out.println("ACOMPANHANTE "+ acompanhante.toString());
+        paci.setConjuge(jtConjuge.getText());
+        paci.setDataNacimento(Utils.paraLocalDate(jdDataNascimento.getDate()));
+        paci.setEscolaridade((Paciente.Escolaridade) jcEscolaridade.getSelectedItem());
+        paci.setEstadoCivil((Paciente.EstadoCivil) jcEstadoCivil.getSelectedItem());
+        paci.setTipoMoradia((Paciente.TipoMoradia) jcTipoMoradia.getSelectedItem());
+        paci.setObservacao(jtObservacao.getText());
+        
+        paci.setQuatidadeFilho(Integer.parseInt(jtQuantidadeFilhos.getText()));
+        paci.setRecebeRenda(jchRecebeRenda.isSelected());
+   //     paci.setTratamento((Tratamento) jcTratamento.getSelectedItem());
+        
+        System.out.println("FALTA ACOMPANHATE E TRATAMENTO");   
+        return paci;
     }
     
-    private void setAcompanhante(Acompanhante acompanhante) {
+    private void setPaciente(Paciente paciente) {
+  
+        jtId.setText(String.valueOf(paciente.getId()));
+        if(paciente.getAcompanhante() != null)
+            jtAcompanhante.setText(paciente.getAcompanhante().toString());
+        jtConjuge.setText(paciente.getConjuge());
+        jdDataNascimento.setDate(java.sql.Date.valueOf(paciente.getDataNacimento()));
+        jcEscolaridade.setSelectedItem(paciente.getEscolaridade());
+        jcEstadoCivil.setSelectedItem(paciente.getEstadoCivil());
+        jcTipoMoradia.setSelectedItem(paciente.getTipoMoradia());
+        jtObservacao.setText(paciente.getObservacao());
         
-        jcGrauParentesco.setSelectedItem(acompanhante.getGrauParentesco());
-        setPessoa(acompanhante.getPessoa());
-        setEndereco(acompanhante.getPessoa().getEndereco());
+        setPessoa(paciente.getPessoa());
+        jtQuantidadeFilhos.setText(String.valueOf(paciente.getQuatidadeFilho()));
+        
+        jchRecebeRenda.setSelected(paciente.isRecebeRenda());
+        
+        setPessoa(paciente.getPessoa());
+        setEndereco(paciente.getPessoa().getEndereco());
+        
+        System.out.println("TRATAMENTO");
+        //paciente.setTratamento((Tratamento) jcTratamento.getSelectedItem());
+        
+        
+        
+        
     }
     
     private void carregarDados(int id){
-        this.acompanhante = controller.obter(id);
-        setAcompanhante(this.acompanhante);
+        paciente = controller.obter(id);
+        setPaciente(paciente);
         
     }
 
@@ -519,10 +733,11 @@ public class AcompanhanteView extends javax.swing.JDialog {
         UtilsView.limpaComponentes(panelPessoa);
         UtilsView.limpaComponentes(panelEndereco);
         UtilsView.limpaComponentes(panelAcompanhante);
-        jtNome.grabFocus();
         UtilsView.habilitaComponentes(panelPessoa, true);
         UtilsView.habilitaComponentes(panelEndereco, true);
         UtilsView.habilitaComponentes(panelAcompanhante, true);
+        jtNome.grabFocus();
+        jtQuantidadeFilhos.setText("0");
     }
     
     private void modoInicial() {
@@ -551,19 +766,15 @@ public class AcompanhanteView extends javax.swing.JDialog {
             @Override
             public boolean salvar() {
 
-                Acompanhante acomp = getAcompanhante();
+                Paciente pacie = getPaciente();
                 Pessoa pessoa = getPessoa();
                     
                 pessoa.setEndereco(getEndereco());
-                acomp.setPessoa(pessoa);
+                pacie.setPessoa(pessoa);
                 if(!novo){
-                  acomp.getPessoa().getEndereco().setId(AcompanhanteView.this.acompanhante.getPessoa().getEndereco().getId());
+                  pacie.getPessoa().getEndereco().setId(paciente.getPessoa().getEndereco().getId());
                 }
-                controller.salvar(acomp, novo);
-                AcompanhanteView.this.acompanhante = acomp;
-                if(vinculado){
-                    dispose();
-                }
+                controller.salvar(pacie, novo);
                 modoInicial();
                 return true;
             }
@@ -586,9 +797,9 @@ public class AcompanhanteView extends javax.swing.JDialog {
 
             @Override
             public void excluir() {
-                int op = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o registro de: "+ AcompanhanteView.this.acompanhante.getPessoa());
+                int op = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o registro de: "+ paciente.getPessoa());
                 if(op == 0){
-                    controller.excluir(AcompanhanteView.this.acompanhante);
+                    controller.excluir(paciente);
                     modoInicial();
                 }
             }
@@ -600,13 +811,13 @@ public class AcompanhanteView extends javax.swing.JDialog {
 
             @Override
             public void confirmar() {
-                dispose();
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         };
     }
     
     private void evtPesquisar(){
-        BuscaAcompanhanteController busca = new BuscaAcompanhanteController();
+        BuscaPacienteController busca = new BuscaPacienteController();
         
         Buscar buscar = new Buscar(null, true, busca.getBuscaController());
         buscar.setVisible(true);
@@ -617,22 +828,19 @@ public class AcompanhanteView extends javax.swing.JDialog {
         }
     }
     
-    public Acompanhante getAcompanhanteSelecionando(Acompanhante aco){
-        if(aco != null){
-            modoInicial();
-            panelBarraTarefa.modoBuscar();
-            setAcompanhante(aco);
-        }else{
-            modoEditar();
+    private void acompanhante() {
+        AcompanhanteView acompanteView = new AcompanhanteView(null, true, true);
+        if (paciente != null) {
+            acompanhante = acompanteView.getAcompanhanteSelecionando(paciente.getAcompanhante());
+        } else {
+            acompanhante = acompanteView.getAcompanhanteSelecionando(null);
         }
-        this.setVisible(true);
-        
-        
-        if(!jtId.getText().isEmpty()){
-            return this.acompanhante;
+        if (acompanhante == null) {
+            jtAcompanhante.setText("");
+        } else {
+            jtAcompanhante.setText(acompanhante.toString());
+
         }
-        
-        return this.acompanhante;
     }
     
 }

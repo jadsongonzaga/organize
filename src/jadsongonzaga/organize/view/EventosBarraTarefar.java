@@ -37,6 +37,9 @@ public interface EventosBarraTarefar {
      */
     public void pesquisar();
     
-    
+    /**
+     * Eventos para pesquisar
+     */
+    public void confirmar();
     
 }

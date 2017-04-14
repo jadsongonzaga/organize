@@ -41,7 +41,8 @@ public class PanelBarraTarefa extends javax.swing.JPanel {
         jbSalvar = new javax.swing.JButton();
         jbCancelar = new javax.swing.JButton();
         jbExcluir = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jbPesquisar = new javax.swing.JButton();
+        jbConfirmar = new javax.swing.JButton();
 
         jToolBar1.setFloatable(false);
 
@@ -115,26 +116,40 @@ public class PanelBarraTarefa extends javax.swing.JPanel {
         });
         jToolBar1.add(jbExcluir);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jadsongonzaga/organize/view/icones/ic_search_black_18dp_1x.png"))); // NOI18N
-        jButton1.setMnemonic('P');
-        jButton1.setText("Pesquisar");
-        jButton1.setToolTipText("Pesquisar (Alt + P)");
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jadsongonzaga/organize/view/icones/ic_search_black_18dp_1x.png"))); // NOI18N
+        jbPesquisar.setMnemonic('P');
+        jbPesquisar.setText("Pesquisar");
+        jbPesquisar.setToolTipText("Pesquisar (Alt + P)");
+        jbPesquisar.setFocusable(false);
+        jbPesquisar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jbPesquisar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbPesquisarActionPerformed(evt);
             }
         });
-        jToolBar1.add(jButton1);
+        jToolBar1.add(jbPesquisar);
+
+        jbConfirmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jadsongonzaga/organize/view/icones/ic_reply_black_18dp_1x.png"))); // NOI18N
+        jbConfirmar.setMnemonic('M');
+        jbConfirmar.setText("Confirmar");
+        jbConfirmar.setToolTipText("Confirmar (Alt + M)");
+        jbConfirmar.setFocusable(false);
+        jbConfirmar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jbConfirmar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbConfirmarActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jbConfirmar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 811, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 930, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -170,11 +185,11 @@ public class PanelBarraTarefa extends javax.swing.JPanel {
         eventos.cancelar();
     }//GEN-LAST:event_jbCancelarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPesquisarActionPerformed
 
         eventos.pesquisar();
         modoBuscar();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jbPesquisarActionPerformed
 
     private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
 
@@ -183,14 +198,21 @@ public class PanelBarraTarefa extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jbExcluirActionPerformed
 
+    private void jbConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbConfirmarActionPerformed
+
+        eventos.confirmar();
+        
+    }//GEN-LAST:event_jbConfirmarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JButton jbCancelar;
+    private javax.swing.JButton jbConfirmar;
     private javax.swing.JButton jbEditar;
     private javax.swing.JButton jbExcluir;
     private javax.swing.JButton jbNovo;
+    private javax.swing.JButton jbPesquisar;
     private javax.swing.JButton jbSalvar;
     // End of variables declaration//GEN-END:variables
 
@@ -209,6 +231,7 @@ public class PanelBarraTarefa extends javax.swing.JPanel {
         jbExcluir.setEnabled(false);
         jbNovo.setEnabled(false);
         jbEditar.setEnabled(false);
+        jbConfirmar.setEnabled(false);
 
     }
 
@@ -219,6 +242,9 @@ public class PanelBarraTarefa extends javax.swing.JPanel {
         jbExcluir.setEnabled(true);
         jbNovo.setEnabled(true);
         jbEditar.setEnabled(true);
+        
+        jbPesquisar.setEnabled(true);
+        jbConfirmar.setEnabled(true);
     }
 
     public void modoInicial() {
@@ -228,6 +254,7 @@ public class PanelBarraTarefa extends javax.swing.JPanel {
         jbExcluir.setEnabled(false);
         jbNovo.setEnabled(true);
         jbEditar.setEnabled(false);
+        jbConfirmar.setEnabled(false);
     }
 
     public void modoBuscar() {
@@ -237,5 +264,7 @@ public class PanelBarraTarefa extends javax.swing.JPanel {
         jbExcluir.setEnabled(true);
         jbNovo.setEnabled(true);
         jbEditar.setEnabled(true);
+        
+        jbConfirmar.setEnabled(true);
     }
 }

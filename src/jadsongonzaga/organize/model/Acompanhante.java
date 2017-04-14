@@ -54,8 +54,12 @@ public class Acompanhante {
         public String toString() {
             return this.nome;
         }
-        
-        
 
     }
+
+    @Override
+    public String toString() {
+        return this.pessoa.toString();
+    }
+
 }

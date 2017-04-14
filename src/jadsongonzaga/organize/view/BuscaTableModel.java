@@ -25,8 +25,10 @@ public class BuscaTableModel extends AbstractTableModel {
     List<Map<String, Object>> dados;
     
     public BuscaTableModel(List<Map<String, Object>> dados) {
-        colunas =  dados.get(0).keySet();
-        this.dados = dados;
+        if(dados.size() > 0){
+            colunas =  dados.get(0).keySet();
+            this.dados = dados;
+        }
     }
     
     public BuscaTableModel(){
