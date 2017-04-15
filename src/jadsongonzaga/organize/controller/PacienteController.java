@@ -28,10 +28,10 @@ public class PacienteController {
 
             if (inserir) {
                 dao.inserir(paciente);
-                auditoria.salvarInserir(paciente.getPessoa().getId(), Auditoria.Rotina.ENDERECO);
+                auditoria.salvarInserir(paciente.getPessoa().getId(), Auditoria.Rotina.PACIENTE);
             } else {
                 dao.alterar(paciente);
-                auditoria.salvarAlterar(paciente.getPessoa().getId(), Auditoria.Rotina.ENDERECO);
+                auditoria.salvarAlterar(paciente.getPessoa().getId(), Auditoria.Rotina.PACIENTE);
             }
 
         } catch (SQLException ex) {
@@ -53,6 +53,7 @@ public class PacienteController {
     public void excluir(Paciente paciente){
         try {
             dao.excluir(paciente);
+            auditoria.salvarDeletar(paciente.getPessoa().getId(), Auditoria.Rotina.PACIENTE);
         } catch (SQLException ex) {
             ExceptionController.tratar(ex, paciente);
         }

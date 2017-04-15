@@ -193,8 +193,8 @@ public class PanelBarraTarefa extends javax.swing.JPanel {
 
     private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
 
-        eventos.excluir();
-        modoInicial();
+        if(eventos.excluir())
+            modoInicial();
         
     }//GEN-LAST:event_jbExcluirActionPerformed
 

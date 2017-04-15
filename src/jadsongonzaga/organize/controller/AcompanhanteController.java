@@ -31,10 +31,10 @@ public class AcompanhanteController {
 
             if (inserir) {
                 dao.inserir(acompanhante);
-                auditoria.salvarInserir(acompanhante.getPessoa().getId(), Auditoria.Rotina.ENDERECO);
+                auditoria.salvarInserir(acompanhante.getPessoa().getId(), Auditoria.Rotina.ACOMPANHANTE);
             } else {
                 dao.alterar(acompanhante);
-                auditoria.salvarAlterar(acompanhante.getPessoa().getId(), Auditoria.Rotina.ENDERECO);
+                auditoria.salvarAlterar(acompanhante.getPessoa().getId(), Auditoria.Rotina.ACOMPANHANTE);
             }
 
         } catch (SQLException ex) {
@@ -56,6 +56,7 @@ public class AcompanhanteController {
     public void excluir(Acompanhante acompanhante){
         try {
             dao.excluir(acompanhante);
+            auditoria.salvarDeletar(acompanhante.getPessoa().getId(), Auditoria.Rotina.ACOMPANHANTE );
         } catch (SQLException ex) {
             ExceptionController.tratar(ex, acompanhante);
         }

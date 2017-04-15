@@ -185,31 +185,29 @@ public class PacienteView extends javax.swing.JDialog {
                         .addGap(4, 4, 4)
                         .addGroup(panelAcompanhanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jtQuantidadeFilhos, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jcEscolaridade, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())
+                            .addComponent(jcEscolaridade, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelAcompanhanteLayout.createSequentialGroup()
                         .addGap(0, 1, Short.MAX_VALUE)
-                        .addGroup(panelAcompanhanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jtObservacao)
-                            .addGroup(panelAcompanhanteLayout.createSequentialGroup()
-                                .addGroup(panelAcompanhanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(panelAcompanhanteLayout.createSequentialGroup()
-                                        .addGroup(panelAcompanhanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jcTipoMoradia, 0, 249, Short.MAX_VALUE)
-                                            .addComponent(jtAcompanhante))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(60, 60, 60)
-                                        .addComponent(jLabel22)
-                                        .addGap(3, 3, 3)
-                                        .addGroup(panelAcompanhanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jchRecebeRenda)
-                                            .addGroup(panelAcompanhanteLayout.createSequentialGroup()
-                                                .addComponent(jTextField1)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addComponent(jtConjuge, javax.swing.GroupLayout.PREFERRED_SIZE, 653, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap())))))
+                        .addGroup(panelAcompanhanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtObservacao, javax.swing.GroupLayout.PREFERRED_SIZE, 653, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelAcompanhanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(panelAcompanhanteLayout.createSequentialGroup()
+                                    .addGroup(panelAcompanhanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jcTipoMoradia, 0, 249, Short.MAX_VALUE)
+                                        .addComponent(jtAcompanhante))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(60, 60, 60)
+                                    .addComponent(jLabel22)
+                                    .addGap(3, 3, 3)
+                                    .addGroup(panelAcompanhanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jchRecebeRenda)
+                                        .addGroup(panelAcompanhanteLayout.createSequentialGroup()
+                                            .addComponent(jTextField1)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jtConjuge, javax.swing.GroupLayout.PREFERRED_SIZE, 653, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
         );
         panelAcompanhanteLayout.setVerticalGroup(
             panelAcompanhanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -796,12 +794,13 @@ public class PacienteView extends javax.swing.JDialog {
             }
 
             @Override
-            public void excluir() {
+            public boolean excluir() {
                 int op = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o registro de: "+ paciente.getPessoa());
                 if(op == 0){
                     controller.excluir(paciente);
                     modoInicial();
                 }
+                return op == 0;
             }
 
             @Override

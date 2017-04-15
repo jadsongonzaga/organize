@@ -585,12 +585,13 @@ public class AcompanhanteView extends javax.swing.JDialog {
             }
 
             @Override
-            public void excluir() {
+            public boolean excluir() {
                 int op = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o registro de: "+ AcompanhanteView.this.acompanhante.getPessoa());
                 if(op == 0){
                     controller.excluir(AcompanhanteView.this.acompanhante);
                     modoInicial();
                 }
+                return op == 0;
             }
 
             @Override
