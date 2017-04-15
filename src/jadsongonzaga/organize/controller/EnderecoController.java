@@ -41,7 +41,7 @@ public class EnderecoController {
         try {
 
             dao.excluir(endereco);
-            auditoria.salvarDeletar(endereco.getId(), Auditoria.Rotina.PESSOA);
+            auditoria.salvarDeletar(endereco.getId(), Auditoria.Rotina.ENDERECO);
 
         } catch (SQLException ex) {
             ExceptionController.tratar(ex, endereco);

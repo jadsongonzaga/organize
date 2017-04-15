@@ -29,8 +29,9 @@ public interface EventosBarraTarefar {
     
     /**
      * Evento para excluir cadastro
+     * @return 
      */
-    public void excluir();
+    public boolean excluir();
 
     /**
      * Eventos para pesquisar
