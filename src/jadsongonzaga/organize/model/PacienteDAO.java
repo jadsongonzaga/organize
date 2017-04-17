@@ -20,11 +20,13 @@ import java.util.List;
  * @author jadson
  */
 public class PacienteDAO {
-      Connection conexao;
-     PessoaDAO pessoaDAO;
+    Connection conexao;
+    PessoaDAO pessoaDAO;
+    TratamentoDAO tratamentoDAO;
 
     public PacienteDAO() {
         pessoaDAO = new PessoaDAO();
+        tratamentoDAO = new TratamentoDAO();
     }
      
      
@@ -65,26 +67,14 @@ public class PacienteDAO {
         pst.execute();
         
         conexao.close();
+        
+        if(paciente.getTratamento() != null){
+            paciente.getTratamento().setPaciente(paciente);
+            tratamentoDAO.alterar(paciente.getTratamento());
+        }
 
     }
     
-    /*
-
-(
-    id                      SERIAL NOT NULL,
-    data_nacimento          DATE NOT NULL,
-    escolaridade            INTEGER NOT NULL,
-    estado_civil            INTEGER NULL,
-    quantidade_filho        INTEGER DEFAULT 0 NOT NULL,
-    conjuge                 VARCHAR(60) NULL,
-    tipo_moradia            INTEGER DEFAULT 1 NOT NULL,
-    recebe_renda            BOOL DEFAULT false NOT NULL,
-    observacao              VARCHAR(100) NULL,
-    acompanhante_id          INTEGER NULL,
-    tratamento_id           INTEGER NULL,
-    pessoa_id               INTEGER NOT NULL,
-);
-*/
 
     /**
      *
@@ -113,9 +103,9 @@ public class PacienteDAO {
         else
             pst.setNull(9, 0);
         
-        if(paciente.getTratamento() != null)
+        if(paciente.getTratamento() != null){
             pst.setInt(10, paciente.getTratamento().getId());
-        else
+        }else
             pst.setNull(10, 0);
         
         pst.setInt(11, paciente.getPessoa().getId());
@@ -124,7 +114,10 @@ public class PacienteDAO {
 
         conexao.close();
         
-        
+        if(paciente.getTratamento() != null){
+            paciente.getTratamento();
+            tratamentoDAO.alterar(paciente.getTratamento());
+        }
         pessoaDAO.alterar(paciente.getPessoa());
         
     }
@@ -168,8 +161,7 @@ public class PacienteDAO {
             paciente.setRecebeRenda(rs.getBoolean("recebe_renda"));
             paciente.setObservacao(rs.getString("observacao"));
             paciente.setAcompanhante(new AcompanhanteDAO().obter(rs.getInt("acompanhante_id")));
-            //paciente.setTratamento(new AcompanhanteDAO().obter(rs.getInt("acompanhante_id")));
-            System.out.println("FALTAMENTO TRATAMENTO");
+            paciente.setTratamento(new TratamentoDAO().obter(rs.getInt("tratamento_id")));
             paciente.setPessoa(pessoaDAO.obter(id));
         }
 
@@ -197,8 +189,7 @@ public class PacienteDAO {
             paciente.setRecebeRenda(rs.getBoolean("recebe_renda"));
             paciente.setObservacao(rs.getString("observacao"));
             paciente.setAcompanhante(new AcompanhanteDAO().obter(rs.getInt("acompanhante_id")));
-            //paciente.setTratamento(new AcompanhanteDAO().obter(rs.getInt("acompanhante_id")));
-            System.out.println("FALTAMENTO TRATAMENTO");
+            paciente.setTratamento(new TratamentoDAO().obter(rs.getInt("tratamento_id")));
             paciente.setPessoa(pessoaDAO.obter(rs.getInt("pessoa_id")));
         }
 

@@ -2,18 +2,16 @@
 package jadsongonzaga.organize.view;
 
 import jadsongonzaga.organize.controller.ClinicaController;
-import jadsongonzaga.organize.controller.MunicipioController;
 import jadsongonzaga.organize.controller.TipoCancerController;
 import jadsongonzaga.organize.controller.TratamentoController;
 import jadsongonzaga.organize.controller.Utils;
-import jadsongonzaga.organize.model.Acompanhante;
 import jadsongonzaga.organize.model.Clinica;
-import jadsongonzaga.organize.model.Estado;
 import jadsongonzaga.organize.model.Paciente;
 import jadsongonzaga.organize.model.TipoCancer;
 import jadsongonzaga.organize.model.Tratamento;
 import java.awt.Dimension;
-import java.util.Date;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 /**
@@ -346,7 +344,6 @@ public class TratamentoView extends javax.swing.JDialog {
     TratamentoController controller = new TratamentoController();
     Tratamento tratamento;
     private boolean novo = true;
-    Acompanhante acompanhante;
     Paciente paciente;
     EventosBarraTarefar eventos;
 
@@ -358,8 +355,8 @@ public class TratamentoView extends javax.swing.JDialog {
         carregarTipoFinalizacao();
         this.setSize(new Dimension(755, 290));
         panelBarraTarefa.getJbPesquisar().setVisible(false);
-        panelBarraTarefa.getJbConfirmar().setVisible(false);
         panelBarraTarefa.getJbNovo().setVisible(false);
+        panelBarraTarefa.getJbExcluir().setVisible(false);
         
         if(paciente == null || paciente.getTratamento() == null){
             eventos.novo();
@@ -397,8 +394,8 @@ public class TratamentoView extends javax.swing.JDialog {
         jcTipoFinalizacao.setSelectedItem(trat.getTipoFim());
         jchQuimioterapio.setSelected(trat.isQuimioterapio());
         jchRadioterapio.setSelected(trat.isRadioterapio());
-        
-        jdDataFinalizacao.setDate(java.sql.Date.valueOf(trat.getDataFimTratamento()));
+        if(trat.getDataFimTratamento() != null)
+            jdDataFinalizacao.setDate(java.sql.Date.valueOf(trat.getDataFimTratamento()));
     }
     
     private void carregarDados(int id){
@@ -451,22 +448,30 @@ public class TratamentoView extends javax.swing.JDialog {
         carregarTipoCancer();
     }
     
-     private void addClinica(){
+    private void addClinica(){
         ClinicaView cv = new ClinicaView(null, true);
         cv.setVisible(true);
         carregarClinica();
     }
     
+    public Tratamento getTratamentoSelecionado(){
+        this.setVisible(true);
+        return tratamento;
+    }
+    
+     
 
     private void acao() {
         eventos = new EventosBarraTarefar() {
             @Override
             public boolean salvar() {
 
-                Tratamento tratamento = getTratamento();
+                tratamento = getTratamento();
           
+                panelBarraTarefa.modoBuscaSalvar(true);
                 controller.salvar(tratamento, novo);
-                modoInicial();
+                setTratamento(tratamento);
+                UtilsView.habilitaComponentes(panelTratamento, false);
                 return true;
             }
 
@@ -503,7 +508,7 @@ public class TratamentoView extends javax.swing.JDialog {
 
             @Override
             public void confirmar() {
-
+                dispose();
             }
         };
     }

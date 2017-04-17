@@ -90,6 +90,12 @@ public class Tratamento {
         this.paciente = paciente;
     }
 
+    @Override
+    public String toString() {
+        return String.valueOf(this.id);
+    }
+
+    
     public enum TipoFim {
         CURA(1, "Cura"), OBITO(2, "Óbito");
         private final int id;

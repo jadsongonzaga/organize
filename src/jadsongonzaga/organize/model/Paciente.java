@@ -9,7 +9,7 @@ import java.time.LocalDate;
  */
 public class Paciente {
     
-    private int id;
+    
     private LocalDate dataNacimento;
     private Escolaridade escolaridade;
     private EstadoCivil estadoCivil;
@@ -21,14 +21,6 @@ public class Paciente {
     private Pessoa pessoa;
     private Acompanhante acompanhante;
     private Tratamento tratamento;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public LocalDate getDataNacimento() {
         return dataNacimento;

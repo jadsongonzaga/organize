@@ -178,7 +178,10 @@ public class PanelBarraTarefa extends javax.swing.JPanel {
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
 
         if (eventos.salvar()) {
-            modoInicial();
+            if(modoBuscaSalvar)
+                modoBuscar();
+            else
+                modoInicial();
         }
     }//GEN-LAST:event_jbSalvarActionPerformed
 
@@ -220,6 +223,7 @@ public class PanelBarraTarefa extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private EventosBarraTarefar eventos;
+    private boolean modoBuscaSalvar = false;
 
     public void setEventos(EventosBarraTarefar eventos) {
         this.eventos = eventos;
@@ -334,6 +338,13 @@ public class PanelBarraTarefa extends javax.swing.JPanel {
     public void setJbSalvar(JButton jbSalvar) {
         this.jbSalvar = jbSalvar;
     }
-    
+
+    /**
+     * Habilita o modo de busca após o evento salvar
+     * @param modoBuscaSalvar 
+     */
+    public void modoBuscaSalvar(boolean modoBuscaSalvar) {
+        this.modoBuscaSalvar = modoBuscaSalvar;
+    }
     
 }

@@ -1,7 +1,6 @@
 
 package jadsongonzaga.organize.view;
 
-import jadsongonzaga.organize.controller.BuscaAcompanhanteController;
 import jadsongonzaga.organize.controller.BuscaPacienteController;
 import jadsongonzaga.organize.controller.ClienteViaCepWS;
 import jadsongonzaga.organize.controller.EstadoController;
@@ -15,6 +14,7 @@ import jadsongonzaga.organize.model.Estado;
 import jadsongonzaga.organize.model.Municipio;
 import jadsongonzaga.organize.model.Paciente;
 import jadsongonzaga.organize.model.Pessoa;
+import jadsongonzaga.organize.model.Tratamento;
 import javax.swing.JOptionPane;
 
 /**
@@ -66,7 +66,7 @@ public class PacienteView extends javax.swing.JDialog {
         jLabel22 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jtAcompanhante = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
+        jtTratamento = new javax.swing.JTextField();
         panelPessoa = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -150,12 +150,19 @@ public class PacienteView extends javax.swing.JDialog {
         jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel22.setText("Tratamento");
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jadsongonzaga/organize/view/icones/ic_search_black_18dp_1x.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/jadsongonzaga/organize/view/icones/ic_add_black_18dp_1x.png"))); // NOI18N
+        jButton2.setToolTipText("Adicionar informações do tratamento");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jtAcompanhante.setEditable(false);
         jtAcompanhante.setText("jTextField1");
 
-        jTextField1.setText("jTextField1");
+        jtTratamento.setEditable(false);
+        jtTratamento.setText("jTextField1");
 
         javax.swing.GroupLayout panelAcompanhanteLayout = new javax.swing.GroupLayout(panelAcompanhante);
         panelAcompanhante.setLayout(panelAcompanhanteLayout);
@@ -203,7 +210,7 @@ public class PacienteView extends javax.swing.JDialog {
                                     .addGroup(panelAcompanhanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jchRecebeRenda)
                                         .addGroup(panelAcompanhanteLayout.createSequentialGroup()
-                                            .addComponent(jTextField1)
+                                            .addComponent(jtTratamento)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addComponent(jtConjuge, javax.swing.GroupLayout.PREFERRED_SIZE, 653, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -243,7 +250,7 @@ public class PacienteView extends javax.swing.JDialog {
                             .addComponent(jLabel21)
                             .addGroup(panelAcompanhanteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel22)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jtTratamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jtAcompanhante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -493,6 +500,12 @@ public class PacienteView extends javax.swing.JDialog {
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+        tratamento();
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -561,7 +574,6 @@ public class PacienteView extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JComboBox<String> jcEscolaridade;
     private javax.swing.JComboBox jcEstado;
     private javax.swing.JComboBox<String> jcEstadoCivil;
@@ -584,6 +596,7 @@ public class PacienteView extends javax.swing.JDialog {
     private javax.swing.JTextField jtRg;
     private javax.swing.JTextField jtRg1;
     private javax.swing.JFormattedTextField jtTelefone;
+    private javax.swing.JTextField jtTratamento;
     private javax.swing.JPanel panelAcompanhante;
     private jadsongonzaga.organize.view.PanelBarraTarefa panelBarraTarefa;
     private javax.swing.JPanel panelEndereco;
@@ -595,6 +608,7 @@ public class PacienteView extends javax.swing.JDialog {
     Paciente paciente;
     private boolean novo = true;
     Acompanhante acompanhante;
+    Tratamento tratamento;
 
     private void iniciar() {
 
@@ -677,7 +691,6 @@ public class PacienteView extends javax.swing.JDialog {
     private Paciente getPaciente() {
         Paciente paci = new Paciente();
         paci.setAcompanhante(acompanhante);
-        System.out.println("ACOMPANHANTE "+ acompanhante.toString());
         paci.setConjuge(jtConjuge.getText());
         paci.setDataNacimento(Utils.paraLocalDate(jdDataNascimento.getDate()));
         paci.setEscolaridade((Paciente.Escolaridade) jcEscolaridade.getSelectedItem());
@@ -687,17 +700,17 @@ public class PacienteView extends javax.swing.JDialog {
         
         paci.setQuatidadeFilho(Integer.parseInt(jtQuantidadeFilhos.getText()));
         paci.setRecebeRenda(jchRecebeRenda.isSelected());
-   //     paci.setTratamento((Tratamento) jcTratamento.getSelectedItem());
-        
-        System.out.println("FALTA ACOMPANHATE E TRATAMENTO");   
+        paci.setTratamento(tratamento);
         return paci;
     }
     
     private void setPaciente(Paciente paciente) {
   
-        jtId.setText(String.valueOf(paciente.getId()));
-        if(paciente.getAcompanhante() != null)
-            jtAcompanhante.setText(paciente.getAcompanhante().toString());
+        jtId.setText(String.valueOf(paciente.getPessoa().getId()));
+        if(paciente.getAcompanhante() != null){
+            acompanhante = paciente.getAcompanhante();
+            jtAcompanhante.setText(acompanhante.toString());
+        }
         jtConjuge.setText(paciente.getConjuge());
         jdDataNascimento.setDate(java.sql.Date.valueOf(paciente.getDataNacimento()));
         jcEscolaridade.setSelectedItem(paciente.getEscolaridade());
@@ -713,8 +726,11 @@ public class PacienteView extends javax.swing.JDialog {
         setPessoa(paciente.getPessoa());
         setEndereco(paciente.getPessoa().getEndereco());
         
-        System.out.println("TRATAMENTO");
-        //paciente.setTratamento((Tratamento) jcTratamento.getSelectedItem());
+        if(paciente.getTratamento() != null){
+            tratamento = paciente.getTratamento();
+            jtTratamento.setText(tratamento.toString());
+        }
+
         
         
         
@@ -734,6 +750,9 @@ public class PacienteView extends javax.swing.JDialog {
         UtilsView.habilitaComponentes(panelPessoa, true);
         UtilsView.habilitaComponentes(panelEndereco, true);
         UtilsView.habilitaComponentes(panelAcompanhante, true);
+        acompanhante = null;
+        tratamento = null;
+        paciente = null;
         jtNome.grabFocus();
         jtQuantidadeFilhos.setText("0");
     }
@@ -810,7 +829,7 @@ public class PacienteView extends javax.swing.JDialog {
 
             @Override
             public void confirmar() {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                
             }
         };
     }
@@ -834,10 +853,18 @@ public class PacienteView extends javax.swing.JDialog {
         } else {
             acompanhante = acompanteView.getAcompanhanteSelecionando(null);
         }
-        if (acompanhante == null) {
-            jtAcompanhante.setText("");
-        } else {
+        if (acompanhante != null) {
             jtAcompanhante.setText(acompanhante.toString());
+
+        }
+    }
+    
+    private void tratamento() {
+        TratamentoView tratamentoView = new TratamentoView(null, true, paciente);
+        
+        tratamento = tratamentoView.getTratamentoSelecionado();
+        if (tratamento != null) {
+            jtTratamento.setText(tratamento.toString());
 
         }
     }
