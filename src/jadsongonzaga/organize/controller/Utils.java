@@ -29,6 +29,8 @@ public class Utils {
     }
     
     public static LocalDate paraLocalDate(Date data){
+        if (data == null)
+            return null;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         
         return LocalDate.parse(sdf.format(data));
