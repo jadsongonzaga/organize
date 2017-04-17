@@ -32,12 +32,23 @@ public class TratamentoDAO {
         PreparedStatement pst = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         pst.setBoolean(1, tratamento.isQuimioterapio());
         pst.setBoolean(2, tratamento.isRadioterapio());
-        pst.setDate(3, Date.valueOf(tratamento.getDataDiagnostico()));
-        pst.setDate(4, Date.valueOf(tratamento.getDataFimTratamento()));
-        pst.setInt(5, tratamento.getTipoFim().getId());
+        pst.setDate(3, tratamento.getDataDiagnostico() == null ? null : Date.valueOf(tratamento.getDataDiagnostico()));
+        pst.setDate(4, tratamento.getDataFimTratamento() == null ? null : Date.valueOf(tratamento.getDataFimTratamento()));
+        if(tratamento.getTipoFim() == null)
+            pst.setNull(5, 0);
+        else
+            pst.setInt(5, tratamento.getTipoFim().getId());
+        
         pst.setInt(6, tratamento.getTipoCancer().getId());
-        pst.setInt(7, tratamento.getClinica().getId());
-        pst.setInt(8, tratamento.getPaciente().getId());
+        
+        if(tratamento.getClinica() == null)
+            pst.setNull(7, 0);
+        else
+            pst.setInt(7, tratamento.getClinica().getId());
+        if(tratamento.getPaciente() == null)
+            pst.setNull(8, 0);
+        else
+            pst.setInt(8, tratamento.getPaciente().getId());
         
         pst.execute();
         ResultSet rs = pst.getGeneratedKeys();

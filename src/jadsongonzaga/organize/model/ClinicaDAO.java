@@ -133,7 +133,7 @@ public class ClinicaDAO {
         PreparedStatement pst = conexao.prepareStatement(sql);
 
         ResultSet rs = pst.executeQuery();
-        if (rs.next()) {
+        while (rs.next()) {
             clinica = new Clinica();
             
             clinica.setId(rs.getInt("id"));

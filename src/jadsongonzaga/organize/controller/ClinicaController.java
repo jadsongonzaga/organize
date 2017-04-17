@@ -1,18 +1,20 @@
-
-
 package jadsongonzaga.organize.controller;
 
 import jadsongonzaga.organize.model.Auditoria;
 import jadsongonzaga.organize.model.Clinica;
 import jadsongonzaga.organize.model.ClinicaDAO;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
  * @author jadson
  */
 public class ClinicaController {
-    
+
     private final ClinicaDAO dao;
     private final AuditoriaController auditoria;
 
@@ -59,5 +61,21 @@ public class ClinicaController {
             ExceptionController.tratar(ex);
         }
         return clinica;
+    }
+
+    public DefaultComboBoxModel obterModelCombo() {
+        DefaultComboBoxModel combo = new DefaultComboBoxModel();
+        List<Clinica> lClinica;
+        try {
+            lClinica = dao.obter();
+
+            for (Clinica cli : lClinica) {
+                combo.addElement(cli);
+            }
+        } catch (SQLException ex) {
+            ExceptionController.tratar(ex);
+        }
+
+        return combo;
     }
 }

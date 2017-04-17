@@ -6,6 +6,9 @@ import jadsongonzaga.organize.model.Auditoria;
 import jadsongonzaga.organize.model.TipoCancer;
 import jadsongonzaga.organize.model.TipoCancerDAO;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -59,5 +62,21 @@ public class TipoCancerController {
             ExceptionController.tratar(ex);
         }
         return tipoCancer;
+    }
+    
+    public DefaultComboBoxModel obterModelCombo() {
+        DefaultComboBoxModel combo = new DefaultComboBoxModel();
+        List<TipoCancer> lTipoCancer = new ArrayList<>();
+        try {
+            lTipoCancer = dao.obter();
+        } catch (SQLException ex) {
+            ExceptionController.tratar(ex);
+        }
+
+        for (TipoCancer tc : lTipoCancer) {
+            combo.addElement(tc);
+        }
+
+        return combo;
     }
 }
