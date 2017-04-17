@@ -5,6 +5,9 @@
  */
 package jadsongonzaga.organize.view;
 
+import javax.swing.JButton;
+import javax.swing.JToolBar;
+
 /**
  *
  * @author jadson
@@ -224,7 +227,7 @@ public class PanelBarraTarefa extends javax.swing.JPanel {
     
     
 
-    private void habilitaEdicao() {
+    public void habilitaEdicao() {
         jbSalvar.setEnabled(true);
         jbCancelar.setEnabled(true);
 
@@ -267,4 +270,70 @@ public class PanelBarraTarefa extends javax.swing.JPanel {
         
         jbConfirmar.setEnabled(true);
     }
+
+    public JToolBar getjToolBar1() {
+        return jToolBar1;
+    }
+
+    public void setjToolBar1(JToolBar jToolBar1) {
+        this.jToolBar1 = jToolBar1;
+    }
+
+    public JButton getJbCancelar() {
+        return jbCancelar;
+    }
+
+    public void setJbCancelar(JButton jbCancelar) {
+        this.jbCancelar = jbCancelar;
+    }
+
+    public JButton getJbConfirmar() {
+        return jbConfirmar;
+    }
+
+    public void setJbConfirmar(JButton jbConfirmar) {
+        this.jbConfirmar = jbConfirmar;
+    }
+
+    public JButton getJbEditar() {
+        return jbEditar;
+    }
+
+    public void setJbEditar(JButton jbEditar) {
+        this.jbEditar = jbEditar;
+    }
+
+    public JButton getJbExcluir() {
+        return jbExcluir;
+    }
+
+    public void setJbExcluir(JButton jbExcluir) {
+        this.jbExcluir = jbExcluir;
+    }
+
+    public JButton getJbNovo() {
+        return jbNovo;
+    }
+
+    public void setJbNovo(JButton jbNovo) {
+        this.jbNovo = jbNovo;
+    }
+
+    public JButton getJbPesquisar() {
+        return jbPesquisar;
+    }
+
+    public void setJbPesquisar(JButton jbPesquisar) {
+        this.jbPesquisar = jbPesquisar;
+    }
+
+    public JButton getJbSalvar() {
+        return jbSalvar;
+    }
+
+    public void setJbSalvar(JButton jbSalvar) {
+        this.jbSalvar = jbSalvar;
+    }
+    
+    
 }
