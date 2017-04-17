@@ -6,7 +6,6 @@
 package jadsongonzaga.organize;
 
 import jadsongonzaga.organize.model.Usuario;
-import jadsongonzaga.organize.view.AcompanhanteView;
 import jadsongonzaga.organize.view.LoginView;
 
 /**
