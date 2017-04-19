@@ -37,11 +37,13 @@ public class AuditoriaController {
         auditoria.setIdentificacaoRegistro(idRegistro);
         auditoria.setRotina(rotina);
 
-        try {
-            dao.inserir(auditoria);
+        System.out.println("INSERIR AUDITORIA");
+        /*try {
+            
+          dao.inserir(auditoria);
         } catch (SQLException ex) {
             ExceptionController.tratar(ex, auditoria);
-        }
+        }*/
     }
 
 }

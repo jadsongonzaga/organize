@@ -83,7 +83,7 @@ public class Auditoria {
 
     public enum Rotina {
         ENDERECO(1), PESSOA(2), ACOMPANHANTE(3), PACIENTE(4), CLINICA(5),
-        TIPO_CANCER(6), TRATAMENTO(7), USUARIO(8);
+        TIPO_CANCER(6), TRATAMENTO(7), USUARIO(8), TIPO_DOACAO(9);
 
         private final int codigo;
 
