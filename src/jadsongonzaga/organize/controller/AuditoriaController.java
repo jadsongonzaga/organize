@@ -37,7 +37,6 @@ public class AuditoriaController {
         auditoria.setIdentificacaoRegistro(idRegistro);
         auditoria.setRotina(rotina);
 
-        System.out.println("PERSISTIR AUDITORIA");
         try {
             dao.inserir(auditoria);
         } catch (SQLException ex) {
