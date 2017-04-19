@@ -5,7 +5,7 @@
  */
 package jadsongonzaga.organize.view;
 
-import jadsongonzaga.organize.controller.LoginController;
+import jadsongonzaga.organize.controller.UsuarioController;
 import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -69,6 +69,12 @@ public class LoginView extends javax.swing.JDialog {
         jLabel1.setText("Usuário");
 
         jLabel2.setText("Senha");
+
+        jtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtUsuarioKeyPressed(evt);
+            }
+        });
 
         jtSenha.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -168,6 +174,14 @@ public class LoginView extends javax.swing.JDialog {
         
     }//GEN-LAST:event_jtSenhaKeyPressed
 
+    private void jtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtUsuarioKeyPressed
+
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            jtSenha.grabFocus();
+        }
+        
+    }//GEN-LAST:event_jtUsuarioKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -226,7 +240,7 @@ public class LoginView extends javax.swing.JDialog {
     }
     
     private void confirmar(){
-        LoginController ctrl = new LoginController();
+        UsuarioController ctrl = new UsuarioController();
         List<ComponenteInfo> componentesObr = new ArrayList<>();
         componentesObr.add(new ComponenteInfo(jtUsuario, "Usuário"));
         componentesObr.add(new ComponenteInfo(jtSenha, "Senha"));

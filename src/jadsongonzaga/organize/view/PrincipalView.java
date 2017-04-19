@@ -35,6 +35,8 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
 
@@ -80,6 +82,18 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenu2.setText("Financeiro");
         jMenuBar1.add(jMenu2);
+
+        jMenu4.setText("Ferramentas");
+
+        jMenuItem7.setText("Usuário");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem7);
+
+        jMenuBar1.add(jMenu4);
 
         jMenu3.setText("Ajuda");
 
@@ -139,6 +153,12 @@ public class PrincipalView extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        
+        usuario();
+        
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -178,6 +198,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
@@ -185,6 +206,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     // End of variables declaration//GEN-END:variables
 
     private void acompanhante() {
@@ -215,5 +237,11 @@ public class PrincipalView extends javax.swing.JFrame {
         Sobre sobre = new Sobre(this, true);
         sobre.setLocationRelativeTo(this);
         sobre.setVisible(true);
+    }
+
+    private void usuario() {
+        UsuarioView usuario = new UsuarioView(this, true);
+        usuario.setLocationRelativeTo(this);
+        usuario.setVisible(true);
     }
 }

@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package jadsongonzaga.organize.controller;
 
 import jadsongonzaga.organize.model.Busca;
@@ -9,26 +13,28 @@ import java.util.List;
  *
  * @author jadson
  */
-public class BuscaTipoCancerController {
-
+public class BuscaUsuarioController {
+    
     private final List<Busca> condicoes;
     private final List<Busca> ordens;
     BuscaController busca;
     
-    public BuscaTipoCancerController() {
+    public BuscaUsuarioController() {
          
         String sql;
         condicoes = new LinkedList<>();
         ordens = new LinkedList<>();
         condicoes.add(new Busca("id", "Identificador", Busca.TipoDado.INTEIRO));
-        condicoes.add(new Busca("descricao", "Descrição", Busca.TipoDado.STRING));
+        condicoes.add(new Busca("nome", "Nome", Busca.TipoDado.STRING));
         ordens.add(new Busca("id", "Identificador", Busca.TipoDado.INTEIRO));
-        ordens.add(new Busca("descricao", "Descrição", Busca.TipoDado.STRING));
+        ordens.add(new Busca("nome", "Nome", Busca.TipoDado.STRING));
         sql = "SELECT "
            + "  id, "
-           + "  descricao as descrição " 
+           + "  nome,"
+           + "  login, "
+           + "  CASE tipo WHEN 1 THEN 'Administrador' WHEN 2 THEN 'Financeiro' WHEN 3 THEN 'Atendimento' END AS tipo " 
            + "FROM"
-           + "  tipo_cancer ";
+           + "  usuario ";
         
         busca = new BuscaController(condicoes, ordens, sql);
              
@@ -37,8 +43,6 @@ public class BuscaTipoCancerController {
     public BuscaController getBuscaController(){
         return busca;
     }
-    
-    
     
     
 }

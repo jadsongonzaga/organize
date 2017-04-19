@@ -191,13 +191,15 @@ CREATE TABLE utilizacao_doacao
 CREATE TABLE usuario
 (
     id                      SERIAL NOT NULL,
+    tipo                    INTEGER NOT NULL DEFAULT 3,
     nome                    VARCHAR(60) NOT NULL,
     login                   VARCHAR(60) NOT NULL,
     senha                   VARCHAR NOT NULL,
     data_criacao            TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    CONSTRAINT pk_usuario PRIMARY KEY (id)
+    CONSTRAINT pk_usuario PRIMARY KEY (id),
+    CONSTRAINT un_login unique (login)
 );
-
+--1 - ADM, 2 - FINANCEIRO 3-ATENDIMENTO
 
 CREATE TABLE auditoria
 (
