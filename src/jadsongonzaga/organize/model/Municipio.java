@@ -11,6 +11,14 @@ public class Municipio {
     private String nome;
     private Estado estado;
 
+    public Municipio(){
+        
+    }
+    
+    public Municipio(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }
