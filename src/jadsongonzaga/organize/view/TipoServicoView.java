@@ -1,24 +1,24 @@
 
 package jadsongonzaga.organize.view;
 
-import jadsongonzaga.organize.controller.BuscaTipoDoacaoController;
-import jadsongonzaga.organize.controller.TipoDoacaoController;
+import jadsongonzaga.organize.controller.BuscaTipoServicoController;
+import jadsongonzaga.organize.controller.TipoServicoController;
 import jadsongonzaga.organize.model.Acompanhante;
-import jadsongonzaga.organize.model.TipoDoacao;
+import jadsongonzaga.organize.model.TipoServico;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author jadson
  */
-public class TipoDoacaoView extends javax.swing.JDialog {
+public class TipoServicoView extends javax.swing.JDialog {
 
     /**
      * Creates new form AcompanhanteView
      * @param parent
      * @param modal
      */
-    public TipoDoacaoView(java.awt.Frame parent, boolean modal) {
+    public TipoServicoView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         acao();
         initComponents();
@@ -42,10 +42,10 @@ public class TipoDoacaoView extends javax.swing.JDialog {
         jtDescricao = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Tipo da doação");
+        setTitle("Tipo do serviço");
         setResizable(false);
 
-        panelPessoa.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipo da doação"));
+        panelPessoa.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipo do serviço"));
         panelPessoa.setPreferredSize(new java.awt.Dimension(706, 226));
 
         jLabel2.setText("Identificador");
@@ -127,8 +127,11 @@ public class TipoDoacaoView extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TipoDoacaoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TipoServicoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        
+        //</editor-fold>
         //</editor-fold>
         
         //</editor-fold>
@@ -137,7 +140,7 @@ public class TipoDoacaoView extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                TipoDoacaoView dialog = new TipoDoacaoView(new javax.swing.JFrame(), true);
+                TipoServicoView dialog = new TipoServicoView(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -159,8 +162,8 @@ public class TipoDoacaoView extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     
-    TipoDoacaoController controller = new TipoDoacaoController();
-    TipoDoacao tipoDoacao;
+    TipoServicoController controller = new TipoServicoController();
+    TipoServico tipoServico;
     private boolean novo = true;
     Acompanhante acompanhante;
 
@@ -174,8 +177,8 @@ public class TipoDoacaoView extends javax.swing.JDialog {
 
 
 
-    private TipoDoacao getTipoDoacao() {
-        TipoDoacao tipoC = new TipoDoacao();
+    private TipoServico getTipoServico() {
+        TipoServico tipoC = new TipoServico();
         if(!jtId.getText().isEmpty())
             tipoC.setId(Integer.parseInt(jtId.getText()));
         tipoC.setDescricao(jtDescricao.getText());
@@ -183,15 +186,15 @@ public class TipoDoacaoView extends javax.swing.JDialog {
         return tipoC;
     }
     
-    private void setTipoDoacao(TipoDoacao tipoDoacao) {
+    private void setTipoServico(TipoServico tipoServico) {
   
-        jtId.setText(String.valueOf(tipoDoacao.getId()));
-        jtDescricao.setText(tipoDoacao.getDescricao());
+        jtId.setText(String.valueOf(tipoServico.getId()));
+        jtDescricao.setText(tipoServico.getDescricao());
     }
     
     private void carregarDados(int id){
-        tipoDoacao = controller.obter(id);
-        setTipoDoacao(tipoDoacao);
+        tipoServico = controller.obter(id);
+        setTipoServico(tipoServico);
         
     }
 
@@ -223,9 +226,9 @@ public class TipoDoacaoView extends javax.swing.JDialog {
             @Override
             public boolean salvar() {
 
-                TipoDoacao tipoDoacao = getTipoDoacao();
+                TipoServico tipoServico = getTipoServico();
           
-                controller.salvar(tipoDoacao, novo);
+                controller.salvar(tipoServico, novo);
                 modoInicial();
                 return true;
             }
@@ -248,9 +251,9 @@ public class TipoDoacaoView extends javax.swing.JDialog {
 
             @Override
             public boolean excluir() {
-                int op = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o registro: "+ tipoDoacao);
+                int op = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir o registro: "+ tipoServico);
                 if(op == 0){
-                    controller.excluir(tipoDoacao);
+                    controller.excluir(tipoServico);
                     modoInicial();
                 }
                 return op == 0;
@@ -269,7 +272,7 @@ public class TipoDoacaoView extends javax.swing.JDialog {
     }
     
     private void evtPesquisar(){
-        BuscaTipoDoacaoController busca = new BuscaTipoDoacaoController();
+        BuscaTipoServicoController busca = new BuscaTipoServicoController();
         
         Buscar buscar = new Buscar(null, true, busca.getBuscaController());
         buscar.setVisible(true);
