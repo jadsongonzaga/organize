@@ -6,12 +6,9 @@
 package jadsongonzaga.organize.view;
 
 import jadsongonzaga.organize.controller.UsuarioController;
-import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.swing.JOptionPane;
 
 /**
@@ -245,10 +242,9 @@ public class LoginView extends javax.swing.JDialog {
         componentesObr.add(new ComponenteInfo(jtUsuario, "Usuário"));
         componentesObr.add(new ComponenteInfo(jtSenha, "Senha"));
         
-        String msg = UtilsView.validaCamposObrigatorios(componentesObr);
-        if( msg != null ){
-            JOptionPane.showMessageDialog(this, msg);
-        }else{
+        
+        if(UtilsView.validaCamposObrigatorios(componentesObr) ){
+            
             if(ctrl.loginAutorizado(jtUsuario.getText(), jtSenha.getText())){
                 PrincipalView principal = new PrincipalView();
                 principal.setLocationRelativeTo(null);

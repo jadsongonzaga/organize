@@ -105,4 +105,15 @@ public class UsuarioController {
         
         return false;
     }
+    
+    public Usuario obter(String login) {
+
+        Usuario usuario = null;
+        try {
+            usuario = dao.obter(login);
+        } catch (SQLException ex) {
+            ExceptionController.tratar(ex);
+        }
+        return usuario;
+    }
 }

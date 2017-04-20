@@ -92,7 +92,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jcTipo" min="-2" pref="196" max="-2" attributes="0"/>
-                              <Component id="jtSenha1" alignment="1" min="-2" pref="196" max="-2" attributes="0"/>
+                              <Component id="jtConfirmarSenha" alignment="1" min="-2" pref="196" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="jtNome" alignment="0" max="32767" attributes="0"/>
@@ -114,17 +114,19 @@
                       <Component id="jtNome" alignment="1" min="-2" pref="28" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jtLogin" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                      <Component id="jLabel5" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                      <Component id="jcTipo" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel6" alignment="1" min="-2" pref="28" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jtLogin" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="jLabel5" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="jcTipo" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jtSenha" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                       <Component id="jLabel4" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                      <Component id="jtSenha1" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                      <Component id="jtConfirmarSenha" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                       <Component id="jLabel7" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="81" max="32767" attributes="0"/>
@@ -199,7 +201,7 @@
             <Property name="text" type="java.lang.String" value="Confimar senha"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JPasswordField" name="jtSenha1">
+        <Component class="javax.swing.JPasswordField" name="jtConfirmarSenha">
         </Component>
       </SubComponents>
     </Container>

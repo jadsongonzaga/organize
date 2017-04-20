@@ -10,6 +10,7 @@ public class Usuario {
     private String nome;
     private String login;
     private String senha;
+    private String confirmacaoSenha;
     private Tipo tipo;
 
     public int getId() {
@@ -50,6 +51,23 @@ public class Usuario {
 
     public void setTipo(Tipo tipo) {
         this.tipo = tipo;
+    }
+
+    public String getConfirmacaoSenha() {
+        return confirmacaoSenha;
+    }
+
+    public void setConfirmacaoSenha(String confirmacaoSenha) {
+        this.confirmacaoSenha = confirmacaoSenha;
+    }
+    
+    /**
+     * Verifica se a senha de confimação é igual ao campo senha
+     * @return 
+     */
+    public boolean senhaConfirmada(){
+        
+        return this.senha != null && this.confirmacaoSenha != null && this.senha.equals(this.confirmacaoSenha);
     }
     
     

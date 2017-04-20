@@ -5,6 +5,8 @@ import jadsongonzaga.organize.controller.BuscaTipoServicoController;
 import jadsongonzaga.organize.controller.TipoServicoController;
 import jadsongonzaga.organize.model.Acompanhante;
 import jadsongonzaga.organize.model.TipoServico;
+import java.util.LinkedList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -225,12 +227,20 @@ public class TipoServicoView extends javax.swing.JDialog {
         eventos = new EventosBarraTarefar() {
             @Override
             public boolean salvar() {
+                
+                List<ComponenteInfo> componentes = new LinkedList<>();
+                componentes.add(new ComponenteInfo(jtDescricao, "Descrição"));
 
-                TipoServico tipoServico = getTipoServico();
-          
-                controller.salvar(tipoServico, novo);
-                modoInicial();
-                return true;
+                if(UtilsView.validaCamposObrigatorios(componentes)){
+                    TipoServico tipoServico = getTipoServico();
+
+                    controller.salvar(tipoServico, novo);
+                    modoInicial();
+                    setTipoServico(tipoServico);
+                    return true;
+                }
+
+                return false;
             }
 
             @Override

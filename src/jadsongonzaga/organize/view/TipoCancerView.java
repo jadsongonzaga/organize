@@ -3,9 +3,11 @@ package jadsongonzaga.organize.view;
 
 import jadsongonzaga.organize.controller.BuscaTipoCancerController;
 import jadsongonzaga.organize.controller.TipoCancerController;
-import jadsongonzaga.organize.controller.Utils;
 import jadsongonzaga.organize.model.Acompanhante;
 import jadsongonzaga.organize.model.TipoCancer;
+import jadsongonzaga.organize.model.TipoDoacao;
+import java.util.LinkedList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -232,12 +234,21 @@ public class TipoCancerView extends javax.swing.JDialog {
         eventos = new EventosBarraTarefar() {
             @Override
             public boolean salvar() {
+         
+                List<ComponenteInfo> componentes = new LinkedList<>();
+                componentes.add(new ComponenteInfo(jtDescricao, "Descrição"));
 
-                TipoCancer tipoCancer = getTipoCancer();
-          
-                controller.salvar(tipoCancer, novo);
-                modoInicial();
-                return true;
+                if(UtilsView.validaCamposObrigatorios(componentes)){
+                    TipoCancer tipoCancer = getTipoCancer();
+
+                    controller.salvar(tipoCancer, novo);
+                    modoInicial();
+                    setTipoCancer(tipoCancer);
+                    return true;
+                }
+
+                return false;
+                
             }
 
             @Override

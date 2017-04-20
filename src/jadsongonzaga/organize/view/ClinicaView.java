@@ -6,6 +6,9 @@ import jadsongonzaga.organize.controller.ClinicaController;
 import jadsongonzaga.organize.controller.Utils;
 import jadsongonzaga.organize.model.Acompanhante;
 import jadsongonzaga.organize.model.Clinica;
+import jadsongonzaga.organize.model.TipoCancer;
+import java.util.LinkedList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -86,15 +89,14 @@ public class ClinicaView extends javax.swing.JDialog {
                 .addGroup(panelPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jtNome)
                     .addGroup(panelPessoaLayout.createSequentialGroup()
-                        .addGroup(panelPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtId, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panelPessoaLayout.createSequentialGroup()
-                                .addComponent(jtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel8)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jtContato, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 1, Short.MAX_VALUE)))
+                        .addComponent(jtId, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 456, Short.MAX_VALUE))
+                    .addGroup(panelPessoaLayout.createSequentialGroup()
+                        .addComponent(jtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtContato)))
                 .addContainerGap())
         );
         panelPessoaLayout.setVerticalGroup(
@@ -268,11 +270,19 @@ public class ClinicaView extends javax.swing.JDialog {
             @Override
             public boolean salvar() {
 
-                Clinica clinica = getClinica();
-          
-                controller.salvar(clinica, novo);
-                modoInicial();
-                return true;
+                List<ComponenteInfo> componentes = new LinkedList<>();
+                componentes.add(new ComponenteInfo(jtNome, "Nome da clínica"));
+
+                if(UtilsView.validaCamposObrigatorios(componentes)){
+                    Clinica clinica = getClinica();
+
+                    controller.salvar(clinica, novo);
+                    modoInicial();
+                    setClinica(clinica);
+                    return true;
+                }
+
+                return false;
             }
 
             @Override

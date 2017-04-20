@@ -10,8 +10,8 @@ import jadsongonzaga.organize.model.Paciente;
 import jadsongonzaga.organize.model.TipoCancer;
 import jadsongonzaga.organize.model.Tratamento;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.LinkedList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -465,14 +465,23 @@ public class TratamentoView extends javax.swing.JDialog {
         eventos = new EventosBarraTarefar() {
             @Override
             public boolean salvar() {
+                
+                List<ComponenteInfo> componentes = new LinkedList<>();
+                componentes.add(new ComponenteInfo(jdDataDiagnostico, "Data do diagnóstico"));
+                componentes.add(new ComponenteInfo(jcTipoCancer, "Tipo do câncer"));
+                componentes.add(new ComponenteInfo(jcClinica, "Clínica"));
 
-                tratamento = getTratamento();
-          
-                panelBarraTarefa.modoBuscaSalvar(true);
-                controller.salvar(tratamento, novo);
-                setTratamento(tratamento);
-                UtilsView.habilitaComponentes(panelTratamento, false);
-                return true;
+                if(UtilsView.validaCamposObrigatorios(componentes)){
+                    tratamento = getTratamento();
+
+                    controller.salvar(tratamento, novo);
+                    modoInicial();
+                    setTratamento(tratamento);
+                    return true;
+                }
+
+                return false;
+                
             }
 
             @Override

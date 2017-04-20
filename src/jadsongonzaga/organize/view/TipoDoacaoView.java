@@ -5,6 +5,8 @@ import jadsongonzaga.organize.controller.BuscaTipoDoacaoController;
 import jadsongonzaga.organize.controller.TipoDoacaoController;
 import jadsongonzaga.organize.model.Acompanhante;
 import jadsongonzaga.organize.model.TipoDoacao;
+import java.util.LinkedList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -84,7 +86,7 @@ public class TipoDoacaoView extends javax.swing.JDialog {
                 .addGroup(panelPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtDescricao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -102,8 +104,8 @@ public class TipoDoacaoView extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelBarraTarefa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(panelPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addComponent(panelPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(101, Short.MAX_VALUE))
         );
 
         pack();
@@ -222,12 +224,19 @@ public class TipoDoacaoView extends javax.swing.JDialog {
         eventos = new EventosBarraTarefar() {
             @Override
             public boolean salvar() {
+                List<ComponenteInfo> componentes = new LinkedList<>();
+                componentes.add(new ComponenteInfo(jtDescricao, "Descrição"));
 
-                TipoDoacao tipoDoacao = getTipoDoacao();
-          
-                controller.salvar(tipoDoacao, novo);
-                modoInicial();
-                return true;
+                if(UtilsView.validaCamposObrigatorios(componentes)){
+                    TipoDoacao tipoDoacao = getTipoDoacao();
+
+                    controller.salvar(tipoDoacao, novo);
+                    modoInicial();
+                    setTipoDoacao(tipoDoacao);
+                    return true;
+                }
+
+                return false;
             }
 
             @Override

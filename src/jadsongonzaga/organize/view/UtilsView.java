@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.util.List;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -49,11 +50,11 @@ public class UtilsView {
         }
     }
 
-    private static String mensagemObrigatoriedade(String nomeComponente) {
-        return nomeComponente + " é obrigatorio.";
+    private static void mensagemObrigatoriedade(String nomeComponente) {
+        JOptionPane.showMessageDialog(null, nomeComponente + " é obrigatorio.");
     }
 
-    public static String validaCamposObrigatorios(List<ComponenteInfo> componentes) {
+    public static boolean validaCamposObrigatorios(List<ComponenteInfo> componentes) {
 
         for (ComponenteInfo cmp : componentes) {
             Component componente = cmp.getComponente();
@@ -62,18 +63,26 @@ public class UtilsView {
 
                 if (((JTextField) componente).getText().isEmpty()) {
                     ((JTextField) componente).grabFocus();
-                    return mensagemObrigatoriedade(value);
+                    mensagemObrigatoriedade(value);
+                    return false;
                 }
 
             } else if (componente instanceof JDateChooser) {
                 if (((JDateChooser) componente).getDate().toString().isEmpty()) {
                     ((JDateChooser) componente).grabFocus();
-                    return mensagemObrigatoriedade(value);
+                    mensagemObrigatoriedade(value);
+                    return false;
+                }
+            } else if (componente instanceof JComboBox) {
+                if (((JComboBox) componente).getSelectedItem() == null) {
+                    ((JComboBox) componente).grabFocus();
+                    mensagemObrigatoriedade(value);
+                    return false;
                 }
             }
         }
         
 
-        return null;
+        return true;
     }
 }

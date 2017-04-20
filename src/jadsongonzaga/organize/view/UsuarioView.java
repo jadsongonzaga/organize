@@ -3,9 +3,10 @@ package jadsongonzaga.organize.view;
 
 import jadsongonzaga.organize.controller.BuscaUsuarioController;
 import jadsongonzaga.organize.controller.UsuarioController;
-import jadsongonzaga.organize.controller.Utils;
-import jadsongonzaga.organize.model.Acompanhante;
+import jadsongonzaga.organize.model.Clinica;
 import jadsongonzaga.organize.model.Usuario;
+import java.util.LinkedList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -48,7 +49,7 @@ public class UsuarioView extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         jcTipo = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
-        jtSenha1 = new javax.swing.JPasswordField();
+        jtConfirmarSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Tipo de câncer");
@@ -109,7 +110,7 @@ public class UsuarioView extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jcTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtSenha1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jtConfirmarSenha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jtNome))
                 .addGap(285, 285, 285))
         );
@@ -124,16 +125,17 @@ public class UsuarioView extends javax.swing.JDialog {
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtNome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jcTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jcTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtSenha1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtConfirmarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(81, Short.MAX_VALUE))
         );
@@ -212,11 +214,11 @@ public class UsuarioView extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JComboBox<String> jcTipo;
+    private javax.swing.JPasswordField jtConfirmarSenha;
     private javax.swing.JTextField jtId;
     private javax.swing.JTextField jtLogin;
     private javax.swing.JTextField jtNome;
     private javax.swing.JPasswordField jtSenha;
-    private javax.swing.JPasswordField jtSenha1;
     private jadsongonzaga.organize.view.PanelBarraTarefa panelBarraTarefa;
     private javax.swing.JPanel panelPessoa;
     // End of variables declaration//GEN-END:variables
@@ -247,6 +249,7 @@ public class UsuarioView extends javax.swing.JDialog {
         usr.setNome(jtNome.getText());
         usr.setLogin(jtLogin.getText());
         usr.setSenha(jtSenha.getText());
+        usr.setConfirmacaoSenha(jtConfirmarSenha.getText());
         usr.setTipo((Usuario.Tipo) jcTipo.getSelectedItem());
         
         return usr;
@@ -258,6 +261,7 @@ public class UsuarioView extends javax.swing.JDialog {
         jtNome.setText(usuario.getNome());
         jtLogin.setText(usuario.getLogin());
         jtSenha.setText(usuario.getSenha());
+        jtConfirmarSenha.setText(usuario.getSenha());
         jcTipo.setSelectedItem(usuario.getTipo());
     }
     
@@ -296,10 +300,37 @@ public class UsuarioView extends javax.swing.JDialog {
             public boolean salvar() {
 
                 Usuario usuario = getUsuario();
-          
-                controller.salvar(usuario, novo);
-                modoInicial();
-                return true;
+                if(!usuario.senhaConfirmada()){
+                    JOptionPane.showMessageDialog(null, "As senhas não coincidem");
+                    jtSenha.grabFocus();
+                    return false;
+                }
+                
+                Usuario usr = controller.obter(usuario.getLogin());
+                if(usr!= null){
+                    if(novo || (!novo && usuario.getId() != usr.getId())){
+                        JOptionPane.showMessageDialog(null, "Login já utilizado");
+                        jtLogin.grabFocus();
+                        return false;
+                    }
+                }
+                List<ComponenteInfo> componentes = new LinkedList<>();
+                componentes.add(new ComponenteInfo(jtNome, "Nome"));
+                componentes.add(new ComponenteInfo(jtLogin, "Login"));
+                componentes.add(new ComponenteInfo(jtSenha, "Senha"));
+                componentes.add(new ComponenteInfo(jtConfirmarSenha, "Confirmar senha"));
+
+                if(UtilsView.validaCamposObrigatorios(componentes)){
+                    controller.salvar(usuario, novo);
+                    modoInicial();
+                    setUsuario(usuario);
+                    return true;
+                }
+                
+                
+                
+                
+                return false;
             }
 
             @Override

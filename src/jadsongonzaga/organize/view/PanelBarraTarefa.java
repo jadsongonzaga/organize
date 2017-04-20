@@ -178,10 +178,13 @@ public class PanelBarraTarefa extends javax.swing.JPanel {
     private void jbSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalvarActionPerformed
 
         if (eventos.salvar()) {
+            modoBuscar();
+            /*
             if(modoBuscaSalvar)
                 modoBuscar();
             else
                 modoInicial();
+            */
         }
     }//GEN-LAST:event_jbSalvarActionPerformed
 
