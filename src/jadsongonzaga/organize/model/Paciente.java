@@ -109,6 +109,13 @@ public class Paciente {
     public void setTratamento(Tratamento tratamento) {
         this.tratamento = tratamento;
     }
+
+    @Override
+    public String toString() {
+        return pessoa.toString();
+    }
+    
+    
     
     public enum Escolaridade{
         FUNDAMENTA(1, "Ensino fundamental"), FUNDAMENTA_INCOMPLETO(2, "Ensino fundamental incompleto"), MEDIO(3, "Ensino médio"),
