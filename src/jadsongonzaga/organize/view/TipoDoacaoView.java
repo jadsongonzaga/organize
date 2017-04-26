@@ -228,7 +228,7 @@ public class TipoDoacaoView extends javax.swing.JDialog {
                 componentes.add(new ComponenteInfo(jtDescricao, "Descrição"));
 
                 if(UtilsView.validaCamposObrigatorios(componentes)){
-                    TipoDoacao tipoDoacao = getTipoDoacao();
+                    tipoDoacao = getTipoDoacao();
 
                     controller.salvar(tipoDoacao, novo);
                     modoInicial();

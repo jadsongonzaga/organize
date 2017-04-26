@@ -232,7 +232,7 @@ public class TipoServicoView extends javax.swing.JDialog {
                 componentes.add(new ComponenteInfo(jtDescricao, "Descrição"));
 
                 if(UtilsView.validaCamposObrigatorios(componentes)){
-                    TipoServico tipoServico = getTipoServico();
+                    tipoServico = getTipoServico();
 
                     controller.salvar(tipoServico, novo);
                     modoInicial();

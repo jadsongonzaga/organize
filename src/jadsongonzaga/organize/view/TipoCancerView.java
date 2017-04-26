@@ -139,13 +139,7 @@ public class TipoCancerView extends javax.swing.JDialog {
             java.util.logging.Logger.getLogger(TipoCancerView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -239,7 +233,7 @@ public class TipoCancerView extends javax.swing.JDialog {
                 componentes.add(new ComponenteInfo(jtDescricao, "Descrição"));
 
                 if(UtilsView.validaCamposObrigatorios(componentes)){
-                    TipoCancer tipoCancer = getTipoCancer();
+                    tipoCancer = getTipoCancer();
 
                     controller.salvar(tipoCancer, novo);
                     modoInicial();
