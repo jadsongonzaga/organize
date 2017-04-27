@@ -132,14 +132,24 @@ CREATE TABLE servico
 (
     id                      SERIAL NOT NULL,
     descricao               VARCHAR(60) NULL,
-    tipo_servico_id         INTEGER NOT NULL,
     paciente_id             INTEGER NOT NULL,
+    situacao                INTEGER NOT NULL DEFAULT 1,
+    data_criacao            TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    CONSTRAINT pk_servico PRIMARY KEY (id),
+    CONSTRAINT fk_servico_paciente FOREIGN KEY (paciente_id) REFERENCES paciente (id)
+);
+
+CREATE TABLE servico_item
+(
+    servico_id              INTEGER NOT NULL,
+    tipo_servico_id         INTEGER NOT NULL,
     quantidade              NUMERIC(9, 2) DEFAULT 0 NOT NULL,
     data_criacao            TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    CONSTRAINT pkservico PRIMARY KEY (id),
-    CONSTRAINT fk_servico_paciente FOREIGN KEY (paciente_id) REFERENCES paciente (id),
-    CONSTRAINT fk_servico_tipo_servico FOREIGN KEY (tipo_servico_id) REFERENCES tipo_servico (id)
+    CONSTRAINT pk_servico_item PRIMARY KEY (servico_id, tipo_servico_id),
+    CONSTRAINT fk_servico_item_servico FOREIGN KEY (servico_id) REFERENCES servico (id),
+    CONSTRAINT fk_servico_item_tipo_servico FOREIGN KEY (tipo_servico_id) REFERENCES tipo_servico (id)
 );
+
 
 CREATE TABLE tipo_doacao
 (

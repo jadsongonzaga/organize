@@ -1,6 +1,7 @@
 
 package jadsongonzaga.organize.controller;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -11,6 +12,7 @@ import java.util.Date;
  * @author jadson
  */
 public class Utils {
+    
     public static String removeFormatacao(String valor){
         valor = valor.replace("-", "");
         valor = valor.replace(" ", "");
@@ -41,7 +43,7 @@ public class Utils {
      * @param valor
      * @return 
      */
-    public static String paraString(double valor){
+    public static String paraString(BigDecimal valor){
         DecimalFormat df = new DecimalFormat("#,##0.00");
         
         return df.format(valor);
@@ -61,5 +63,14 @@ public class Utils {
     public static boolean eNumero(String valor){
         
         return valor.matches("[0-9]*");
+    }
+    
+    public static BigDecimal paraBigDecimal(String valor){
+        
+        valor = valor.replace(".", "");
+        valor = valor.replace(",", ".");
+        
+        
+        return new BigDecimal(valor);
     }
 }
