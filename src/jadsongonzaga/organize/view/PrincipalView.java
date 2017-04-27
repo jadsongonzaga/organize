@@ -38,6 +38,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -47,6 +48,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jMenu1.setMnemonic('A');
         jMenu1.setText("Atendimento");
 
         jMenuItem2.setText("Acompanhante");
@@ -83,6 +85,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu2.setMnemonic('F');
         jMenu2.setText("Financeiro");
 
         jMenuItem8.setText("Tipo do serviço");
@@ -109,8 +112,17 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem10);
 
+        jMenuItem11.setText("Serviço");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem11);
+
         jMenuBar1.add(jMenu2);
 
+        jMenu4.setMnemonic('e');
         jMenu4.setText("Ferramentas");
 
         jMenuItem7.setText("Usuário");
@@ -123,6 +135,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
+        jMenu3.setMnemonic('j');
         jMenu3.setText("Ajuda");
 
         jMenuItem6.setText("Sobre");
@@ -205,6 +218,12 @@ public class PrincipalView extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+
+        servico();
+        
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -248,6 +267,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -310,5 +330,11 @@ public class PrincipalView extends javax.swing.JFrame {
         DoadorView doador = new DoadorView(this, false);
         doador.setLocationRelativeTo(this);
         doador.setVisible(true);
+    }
+    
+    private void servico(){
+        ServicoView servico = new ServicoView(this, false);
+        servico.setLocationRelativeTo(this);
+        servico.setVisible(true);
     }
 }
