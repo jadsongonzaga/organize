@@ -34,9 +34,10 @@ public class Buscar extends javax.swing.JDialog {
         this.controller = controller;
         model = new BuscaTableModel(controller.getDados());
         
-        jtbResultado.setModel(model);
+        //jtbResultado.setModel(model);
         comboCondicoes();
         comboOrdem();
+        buscarCodicao();
     }
 
     /**
