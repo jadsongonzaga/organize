@@ -58,7 +58,7 @@ public class DoadorView extends javax.swing.JDialog {
         jtTelefone = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Tipo do serviço");
+        setTitle("Doador");
         setResizable(false);
 
         panelPessoa.setBorder(javax.swing.BorderFactory.createTitledBorder("Doador"));

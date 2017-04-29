@@ -6,12 +6,12 @@ package jadsongonzaga.organize.model;
  * @author jadson
  */
 public class Doador {
-    int id;
-    String nome;
-    String cpf;
-    String endereco;
-    String telefone;
-    Municipio municipio;
+    private int id;
+    private String nome;
+    private String cpf;
+    private String endereco;
+    private String telefone;
+    private Municipio municipio;
 
     public int getId() {
         return id;
