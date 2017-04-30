@@ -3,6 +3,7 @@ package jadsongonzaga.organize.view;
 import com.toedter.calendar.JDateChooser;
 import java.awt.Component;
 import java.util.List;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -44,7 +45,7 @@ public class UtilsView {
         Component[] componentes = panel.getComponents();
 
         for (Component component : componentes) {
-            if (component instanceof JTextField || component instanceof JComboBox || component instanceof JCheckBox || component instanceof JDateChooser) {
+            if (component instanceof JTextField || component instanceof JComboBox || component instanceof JCheckBox || component instanceof JDateChooser|| component instanceof JButton) {
                 component.setEnabled(habilita);
             }
         }

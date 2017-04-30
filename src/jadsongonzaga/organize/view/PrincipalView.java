@@ -39,6 +39,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
 
@@ -137,7 +138,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu4.setMnemonic('e');
-        jMenu4.setText("Ferramentas");
+        jMenu4.setText("Utilitários");
 
         jMenuItem7.setText("Usuário");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
@@ -146,6 +147,14 @@ public class PrincipalView extends javax.swing.JFrame {
             }
         });
         jMenu4.add(jMenuItem7);
+
+        jMenuItem14.setText("Instituição");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem14);
 
         jMenuBar1.add(jMenu4);
 
@@ -250,6 +259,12 @@ public class PrincipalView extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+
+        instituicao();
+        
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -296,6 +311,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -373,8 +389,14 @@ public class PrincipalView extends javax.swing.JFrame {
     }
 
     private void utilizacaoDoacao() {
-        UtilizacaoDoacaoView doacao = new UtilizacaoDoacaoView(this, false);
-        doacao.setLocationRelativeTo(this);
-        doacao.setVisible(true);
+        UtilizacaoDoacaoView utilDoac = new UtilizacaoDoacaoView(this, false);
+        utilDoac.setLocationRelativeTo(this);
+        utilDoac.setVisible(true);
+    }
+
+    private void instituicao() {
+        InstituicaoView instituicao = new InstituicaoView(this, false);
+        instituicao.setLocationRelativeTo(this);
+        instituicao.setVisible(true);
     }
 }
