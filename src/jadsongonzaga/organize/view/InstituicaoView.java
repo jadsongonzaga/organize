@@ -487,10 +487,14 @@ public class InstituicaoView extends javax.swing.JDialog {
 
                 List<ComponenteInfo> componentes = new LinkedList<>();
 
-                // componentes.add(new ComponenteInfo(jcTipoServico, "Tipo do serviço"));
+                 componentes.add(new ComponenteInfo(jtRazaoSocial, "Razão social"));
+                 componentes.add(new ComponenteInfo(jtNomeFantasia, "Nome fantasia"));
+                 componentes.add(new ComponenteInfo(jtCep, "CEP"));
+                 componentes.add(new ComponenteInfo(jtLogradouro, "Logradouro"));
+                 componentes.add(new ComponenteInfo(jcMunicipio, "Cidade"));
                 if (UtilsView.validaCamposObrigatorios(componentes)) {
                     instituicao = getInstituicao();
-
+                    
                     controller.salvar(instituicao, novo);
                     modoInicial();
                     setInstituicao(instituicao);
