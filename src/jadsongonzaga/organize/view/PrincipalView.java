@@ -36,6 +36,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -124,6 +125,14 @@ public class PrincipalView extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jMenuItem12);
+
+        jMenuItem13.setText("Utilização da doação");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem13);
 
         jMenuBar1.add(jMenu2);
 
@@ -235,6 +244,12 @@ public class PrincipalView extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+
+        utilizacaoDoacao();
+        
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -280,6 +295,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -352,6 +368,12 @@ public class PrincipalView extends javax.swing.JFrame {
 
     private void doacao() {
         DoacaoView doacao = new DoacaoView(this, false);
+        doacao.setLocationRelativeTo(this);
+        doacao.setVisible(true);
+    }
+
+    private void utilizacaoDoacao() {
+        UtilizacaoDoacaoView doacao = new UtilizacaoDoacaoView(this, false);
         doacao.setLocationRelativeTo(this);
         doacao.setVisible(true);
     }

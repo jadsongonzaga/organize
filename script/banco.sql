@@ -188,14 +188,14 @@ CREATE TABLE doacao
 CREATE TABLE utilizacao_doacao
 (
     id                      SERIAL NOT NULL,
-    doacao_id               INTEGER NOT NULL,
+    --doacao_id               INTEGER NOT NULL, | Analizar se necessário a ligação com doação
     tipo_servico_id         INTEGER NOT NULL,
     quantidade              NUMERIC(11, 2) DEFAULT 0 NOT NULL,
+    observacao              VARCHAR(100) NULL,
     data_criacao            TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     CONSTRAINT pk_utilizacao_doacao  PRIMARY KEY (id),
-    CONSTRAINT fk_utilizacao_doacao_doacao FOREIGN KEY (doacao_id) REFERENCES doacao (id),
+    --CONSTRAINT fk_utilizacao_doacao_doacao FOREIGN KEY (doacao_id) REFERENCES doacao (id),
     CONSTRAINT fk_utilizacao_doacao_tipo_servico FOREIGN KEY (tipo_servico_id) REFERENCES tipo_servico (id)
-
 );
 
 CREATE TABLE usuario
@@ -228,3 +228,16 @@ COMMENT ON COLUMN auditoria.tipo_operacao IS '1 - INSERT
 2 - UPDATE
 3 - DELETE';
 COMMENT ON COLUMN auditoria.identificacao_registro IS 'id do registro alterado, não será fk';
+
+CREATE TABLE instituicao
+(
+    id                      SERIAL NOT NULL,
+    razao_social            VARCHAR(60) NOT NULL,
+    nome_fantasia           VARCHAR(60) NOT NULL,
+    endereco_id             INTEGER NOT NULL,
+    documento               VARCHAR(20),
+    logo                    BYTEA,
+    data_criacao            TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  CONSTRAINT pkinstituicao PRIMARY KEY (id),
+  CONSTRAINT fk_instituicao_endereco FOREIGN KEY (endereco_id) REFERENCES endereco (id)
+);
