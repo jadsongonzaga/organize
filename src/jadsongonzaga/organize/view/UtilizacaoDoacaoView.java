@@ -54,7 +54,7 @@ public class UtilizacaoDoacaoView extends javax.swing.JDialog {
         setTitle("Utilização da doação");
         setResizable(false);
 
-        panelPessoa.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipo de câncer"));
+        panelPessoa.setBorder(javax.swing.BorderFactory.createTitledBorder("Utilização da doação"));
         panelPessoa.setPreferredSize(new java.awt.Dimension(706, 226));
 
         jLabel2.setText("Identificador");
@@ -171,9 +171,7 @@ public class UtilizacaoDoacaoView extends javax.swing.JDialog {
             java.util.logging.Logger.getLogger(UtilizacaoDoacaoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+
 
 
         /* Create and display the dialog */
