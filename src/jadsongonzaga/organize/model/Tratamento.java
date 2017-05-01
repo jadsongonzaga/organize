@@ -97,7 +97,7 @@ public class Tratamento {
 
     
     public enum TipoFim {
-        CURA(1, "Cura"), OBITO(2, "Óbito");
+        CURA(1, "Cura"), OBITO(2, "Óbito"), ABANDONO(3, "Abandono");
         private final int id;
         private final String descricao;
 
