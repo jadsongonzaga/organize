@@ -297,10 +297,10 @@ public class DoacaoView extends javax.swing.JDialog {
         jbDoador.grabFocus();
     }
 
-    EventosBarraTarefar eventos;
+    EventosBarraTarefas eventos;
 
     private void acao() {
-        eventos = new EventosBarraTarefar() {
+        eventos = new EventosBarraTarefas() {
             @Override
             public boolean salvar() {
          

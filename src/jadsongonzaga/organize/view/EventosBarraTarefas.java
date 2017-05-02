@@ -5,7 +5,7 @@ package jadsongonzaga.organize.view;
  * Eventos a serem implementados para o funcinamento da barra de tarefa
  * @author jadson
  */
-public interface EventosBarraTarefar {
+public interface EventosBarraTarefas {
      
     /**
      * Evento de salvar

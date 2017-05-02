@@ -345,7 +345,7 @@ public class TratamentoView extends javax.swing.JDialog {
     Tratamento tratamento;
     private boolean novo = true;
     Paciente paciente;
-    EventosBarraTarefar eventos;
+    EventosBarraTarefas eventos;
 
     private void iniciar() {
 
@@ -462,7 +462,7 @@ public class TratamentoView extends javax.swing.JDialog {
      
 
     private void acao() {
-        eventos = new EventosBarraTarefar() {
+        eventos = new EventosBarraTarefas() {
             @Override
             public boolean salvar() {
                 

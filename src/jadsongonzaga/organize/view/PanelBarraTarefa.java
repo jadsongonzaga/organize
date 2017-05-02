@@ -19,7 +19,7 @@ public class PanelBarraTarefa extends javax.swing.JPanel {
      *
      * @param eventos Evendos da barra de tarefas
      */
-    public PanelBarraTarefa(EventosBarraTarefar eventos) {
+    public PanelBarraTarefa(EventosBarraTarefas eventos) {
         initComponents();
         this.eventos = eventos;
         modoInicial();
@@ -225,10 +225,10 @@ public class PanelBarraTarefa extends javax.swing.JPanel {
     private javax.swing.JButton jbSalvar;
     // End of variables declaration//GEN-END:variables
 
-    private EventosBarraTarefar eventos;
+    private EventosBarraTarefas eventos;
     private boolean modoBuscaSalvar = false;
 
-    public void setEventos(EventosBarraTarefar eventos) {
+    public void setEventos(EventosBarraTarefas eventos) {
         this.eventos = eventos;
     }
     

@@ -544,10 +544,10 @@ public class AcompanhanteView extends javax.swing.JDialog {
         jtNome.grabFocus();
     }
 
-    EventosBarraTarefar eventos;
+    EventosBarraTarefas eventos;
 
     private void acao() {
-        eventos = new EventosBarraTarefar() {
+        eventos = new EventosBarraTarefas() {
             @Override
             public boolean salvar() {
 

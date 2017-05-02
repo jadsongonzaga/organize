@@ -477,10 +477,10 @@ public class InstituicaoView extends javax.swing.JDialog {
         jtRazaoSocial.grabFocus();
     }
 
-    EventosBarraTarefar eventos;
+    EventosBarraTarefas eventos;
 
     private void acao() {
-        eventos = new EventosBarraTarefar() {
+        eventos = new EventosBarraTarefas() {
             @Override
             public boolean salvar() {
 

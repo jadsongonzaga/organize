@@ -221,10 +221,10 @@ public class TipoCancerView extends javax.swing.JDialog {
         jtDescricao.grabFocus();
     }
 
-    EventosBarraTarefar eventos;
+    EventosBarraTarefas eventos;
 
     private void acao() {
-        eventos = new EventosBarraTarefar() {
+        eventos = new EventosBarraTarefas() {
             @Override
             public boolean salvar() {
          

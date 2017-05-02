@@ -264,10 +264,10 @@ public class UtilizacaoDoacaoView extends javax.swing.JDialog {
         jcTipoServico.grabFocus();
     }
 
-    EventosBarraTarefar eventos;
+    EventosBarraTarefas eventos;
 
     private void acao() {
-        eventos = new EventosBarraTarefar() {
+        eventos = new EventosBarraTarefas() {
             @Override
             public boolean salvar() {
          

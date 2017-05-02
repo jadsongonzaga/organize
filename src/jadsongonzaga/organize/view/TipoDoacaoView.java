@@ -218,10 +218,10 @@ public class TipoDoacaoView extends javax.swing.JDialog {
         jtDescricao.grabFocus();
     }
 
-    EventosBarraTarefar eventos;
+    EventosBarraTarefas eventos;
 
     private void acao() {
-        eventos = new EventosBarraTarefar() {
+        eventos = new EventosBarraTarefas() {
             @Override
             public boolean salvar() {
                 List<ComponenteInfo> componentes = new LinkedList<>();
