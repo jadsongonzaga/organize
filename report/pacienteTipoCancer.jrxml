@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-04-29T16:56:08 -->
+<!-- 2017-05-01T21:41:47 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pacienteTipoCancer" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4eedbb89-b4f6-4469-9ab6-f642a1688cf7">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="dbteste"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="298"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="695"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
 	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true"/>
@@ -61,11 +63,14 @@
 	</subDataset>
 	<queryString language="SQL">
 		<![CDATA[SELECT
-   count(tra.paciente_id) quantidade_paciente,
+   count(tra.id) quantidade_paciente,
    tca.descricao
 FROM
    tratamento tra
    INNER JOIN tipo_cancer tca on tra.tipo_cancer_id = tca.id
+WHERE
+  tra.data_fim_tratamento IS NULL and
+  tra.tipo_finalizacao IS NULL
 GROUP BY
    tca.descricao]]>
 	</queryString>
@@ -76,50 +81,40 @@ GROUP BY
 	</variable>
 	<pageHeader>
 		<band height="62" splitType="Immediate">
-			<staticText>
-				<reportElement x="360" y="1" width="50" height="14" uuid="0f86baff-6386-4f3f-b3fe-2388707babe8">
-					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
-				</reportElement>
-				<box rightPadding="4"/>
-				<textElement textAlignment="Right">
-					<font fontName="Lucida Console"/>
-				</textElement>
-				<text><![CDATA[Data:]]></text>
-			</staticText>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="410" y="1" width="144" height="14" uuid="bb10dbe1-0a4f-4722-9953-c163b63cf979"/>
-				<textElement>
-					<font fontName="Lucida Console"/>
+				<reportElement x="390" y="1" width="164" height="14" uuid="bb10dbe1-0a4f-4722-9953-c163b63cf979"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="2" y="1" width="80" height="14" uuid="6aa14ab1-c76e-4b66-b7fb-eeb9d11d1586"/>
+				<reportElement x="387" y="19" width="80" height="14" uuid="6aa14ab1-c76e-4b66-b7fb-eeb9d11d1586"/>
 				<textElement textAlignment="Right">
-					<font fontName="Lucida Console"/>
+					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="84" y="1" width="100" height="14" uuid="30d7d78e-6f4e-4566-9c48-2c35abf506c4"/>
+				<reportElement x="469" y="19" width="86" height="14" uuid="30d7d78e-6f4e-4566-9c48-2c35abf506c4"/>
 				<textElement textAlignment="Left">
-					<font fontName="Lucida Console"/>
+					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="220" y="30" width="100" height="14" uuid="50a64830-0c7f-4469-8c62-a23304565dbb">
+				<reportElement x="172" y="27" width="210" height="14" uuid="50a64830-0c7f-4469-8c62-a23304565dbb">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
-				<textElement>
-					<font fontName="DejaVu Sans Mono"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial"/>
 				</textElement>
-				<text><![CDATA[Static Text]]></text>
+				<text><![CDATA[Tipos de câncer - Totais]]></text>
 			</staticText>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="21">
+		<band height="23">
 			<staticText>
 				<reportElement style="Column header" positionType="Float" x="0" y="0" width="220" height="14" forecolor="#000000" uuid="2e0de47e-c430-45dd-a901-2a6aab659b80"/>
 				<textElement>
@@ -132,7 +127,7 @@ GROUP BY
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<textElement>
-					<font fontName="Lucida Console" size="12" isBold="true"/>
+					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Quantidade]]></text>
 			</staticText>
@@ -151,7 +146,7 @@ GROUP BY
 					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 				</reportElement>
 				<textElement>
-					<font fontName="Lucida Console" size="12" isBold="false"/>
+					<font fontName="Arial" size="12" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{quantidade_paciente}]]></textFieldExpression>
 			</textField>
@@ -160,23 +155,38 @@ GROUP BY
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<textElement>
-					<font fontName="Lucida Console" size="12" isBold="false"/>
+					<font fontName="Arial" size="12" isBold="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
-	<columnFooter>
-		<band height="25">
+	<summary>
+		<band height="50">
 			<textField>
-				<reportElement x="80" y="5" width="100" height="14" uuid="ae82d2ac-6f6a-4431-bd2b-469303b975b1">
+				<reportElement x="300" y="4" width="220" height="14" uuid="67757491-08be-4bc7-8766-f72343d26539">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 				</reportElement>
 				<textElement>
-					<font fontName="Lucida Console"/>
+					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{quantidadeTotal}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="236" y="4" width="60" height="14" uuid="a9276f38-34db-4254-afa2-0c3ab2da937b">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Total..:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="-1" y="2" width="556" height="1" uuid="ef7fd83d-a331-40b6-9f2a-af68ce7683ca">
+					<property name="local_mesure_unitheight" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
 		</band>
-	</columnFooter>
+	</summary>
 </jasperReport>

@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
+<!-- 2017-05-01T21:52:34 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TipoCancerMunicipio" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="1165d264-c293-4d91-bac4-9802312ad35f">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="219"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="774"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="dbteste"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 
+   tipo_cancer.descricao,
+   count(tratamento.id) as quantidade,
+   municipio.nome as municipio,
+   estado.nome as estado
+FROM 
+  municipio
+  INNER JOIN endereco ON endereco.municipio_id = municipio.id 
+  INNER JOIN pessoa ON pessoa.endereco_id = endereco.id 
+  INNER JOIN paciente ON paciente.id = pessoa.id 
+  INNER JOIN tratamento ON tratamento.id = paciente.tratamento_id 
+  INNER JOIN tipo_cancer ON tipo_cancer.id = tratamento.tipo_cancer_id 
+  INNER JOIN estado ON municipio.estado_id = estado.id
+WHERE
+  tratamento.data_fim_tratamento isnull and
+  tipo_finalizacao isnull
+group by
+  tipo_cancer.descricao,
+  municipio.nome,
+   estado.nome]]>
+	</queryString>
+	<field name="descricao" class="java.lang.String"/>
+	<field name="quantidade" class="java.lang.Integer"/>
+	<field name="municipio" class="java.lang.String"/>
+	<field name="estado" class="java.lang.String"/>
+	<variable name="totalTipo" class="java.lang.Long" resetType="Group" resetGroup="municipio" calculation="Sum">
+		<variableExpression><![CDATA[$F{quantidade}]]></variableExpression>
+	</variable>
+	<variable name="total" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{quantidade}]]></variableExpression>
+	</variable>
+	<group name="municipio">
+		<groupExpression><![CDATA[$F{municipio}]]></groupExpression>
+		<groupHeader>
+			<band height="16">
+				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				<textField>
+					<reportElement positionType="Float" x="0" y="0" width="180" height="14" uuid="cc37714b-7a5c-45e6-8171-10f94e36b8ec">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement>
+						<font fontName="Arial"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{municipio} + " - " + $F{estado}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="33">
+				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				<line>
+					<reportElement x="1" y="1" width="549" height="1" uuid="836fdb48-9b8a-449d-ae86-2132e7e9e198"/>
+				</line>
+				<textField>
+					<reportElement positionType="Float" x="190" y="4" width="100" height="14" uuid="65de264b-c847-4ca7-90a9-71f3fe3cf670"/>
+					<textFieldExpression><![CDATA[$V{totalTipo}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement positionType="Float" x="20" y="4" width="160" height="14" uuid="de304c47-21a0-4a8a-8538-7d6e7e98befc">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font fontName="Arial"/>
+					</textElement>
+					<text><![CDATA[Total do município..:]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="60" splitType="Prevent">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<staticText>
+				<reportElement x="181" y="18" width="192" height="14" uuid="95689530-7c2e-4a29-9700-6ad9114fe63a"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Tipo de câncer por município]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="380" y="30" width="100" height="14" uuid="8197b062-2056-4bbf-aa9b-ed14edc3e01b">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="480" y="30" width="80" height="14" uuid="265a002e-c4bb-49e7-a565-3ccbf943fbcd">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="385" y="8" width="170" height="14" uuid="ac3f7c65-021b-47e5-b544-8699b0a9c9f9"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<staticText>
+				<reportElement x="20" y="0" width="160" height="14" uuid="7b8f7fbf-b76c-4321-a6dd-4feed98c39e4">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Tipo do câncer]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="187" y="0" width="100" height="14" uuid="1f3d4779-5e11-4605-94f4-c4d7457d5227"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Quantidade]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="14" width="549" height="1" uuid="8f2033db-580b-427f-b01e-9b53fad8683b"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField>
+				<reportElement positionType="Float" x="20" y="1" width="160" height="14" uuid="17601379-ee2b-4350-ab36-42f069c3c167"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" x="190" y="1" width="100" height="14" uuid="3d0b29ac-c2c6-486e-b233-a3c4dffff0aa"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quantidade}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="34" splitType="Stretch">
+			<textField>
+				<reportElement x="190" y="9" width="100" height="14" uuid="3f9bdd36-eb44-4bb4-90a1-7788c65a7de2">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="70" y="9" width="110" height="14" uuid="b0e4fcb4-c858-4ddb-8a79-bc8c3ad975ab">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Total..:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="2" y="4" width="549" height="1" uuid="a74ae9ea-544f-43a6-9524-47749b2a8cc8">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Double"/>
+				</graphicElement>
+			</line>
+		</band>
+	</summary>
+</jasperReport>
