@@ -5,7 +5,6 @@ import jadsongonzaga.organize.controller.BuscaTipoCancerController;
 import jadsongonzaga.organize.controller.TipoCancerController;
 import jadsongonzaga.organize.model.Acompanhante;
 import jadsongonzaga.organize.model.TipoCancer;
-import jadsongonzaga.organize.model.TipoDoacao;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JOptionPane;

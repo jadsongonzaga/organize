@@ -3,7 +3,6 @@ package jadsongonzaga.organize.controller;
 import jadsongonzaga.organize.model.Busca;
 import jadsongonzaga.organize.model.BuscaDAO;
 import java.sql.SQLException;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import javax.swing.DefaultComboBoxModel;

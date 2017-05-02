@@ -35,7 +35,7 @@ public class Sobre extends javax.swing.JDialog {
         setTitle("Sobre");
         setResizable(false);
 
-        jLabel1.setText("Organizar");
+        jLabel1.setText("Organize");
 
         jLabel2.setText("Versão: DEV");
 

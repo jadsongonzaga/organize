@@ -3,13 +3,10 @@ package jadsongonzaga.organize.view;
 
 import jadsongonzaga.organize.controller.BuscaDoacaoController;
 import jadsongonzaga.organize.controller.BuscaDoadorController;
-import jadsongonzaga.organize.controller.BuscaPacienteController;
 import jadsongonzaga.organize.controller.DoacaoController;
 import jadsongonzaga.organize.controller.DoadorController;
-import jadsongonzaga.organize.controller.PacienteController;
 import jadsongonzaga.organize.controller.TipoDoacaoController;
 import jadsongonzaga.organize.controller.Utils;
-import jadsongonzaga.organize.model.Acompanhante;
 import jadsongonzaga.organize.model.Doacao;
 import jadsongonzaga.organize.model.Doador;
 import jadsongonzaga.organize.model.TipoDoacao;

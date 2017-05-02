@@ -4,8 +4,6 @@ import jadsongonzaga.organize.model.Auditoria;
 import jadsongonzaga.organize.model.Clinica;
 import jadsongonzaga.organize.model.ClinicaDAO;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 

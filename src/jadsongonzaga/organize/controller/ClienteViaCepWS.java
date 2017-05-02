@@ -104,10 +104,5 @@ public class ClienteViaCepWS {
     public String getBairro() {
         return bairro;
     }
-    
-    public static void main(String[] args) throws CepNaoEncontradoException {
-        ClienteViaCepWS v = new ClienteViaCepWS("44330000");
-        System.out.println(v.getUf());
-    }
 
 }

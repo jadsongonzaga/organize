@@ -8,15 +8,12 @@ package jadsongonzaga.organize.view;
 import jadsongonzaga.organize.controller.ServicoItemController;
 import jadsongonzaga.organize.controller.TipoServicoController;
 import jadsongonzaga.organize.controller.Utils;
-import jadsongonzaga.organize.exception.DuplicidadeRegistroException;
 import jadsongonzaga.organize.model.Servico;
 import jadsongonzaga.organize.model.ServicoItem;
 import jadsongonzaga.organize.model.TipoServico;
 import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

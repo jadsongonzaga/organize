@@ -3,13 +3,10 @@ package jadsongonzaga.organize.controller;
 import jadsongonzaga.organize.Organize;
 import jadsongonzaga.organize.model.Auditoria;
 import jadsongonzaga.organize.model.AuditoriaDAO;
-
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

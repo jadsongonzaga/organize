@@ -10,7 +10,6 @@ import jadsongonzaga.organize.model.Instituicao;
 import jadsongonzaga.organize.model.Endereco;
 import jadsongonzaga.organize.model.Estado;
 import jadsongonzaga.organize.model.Municipio;
-import java.awt.Graphics;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;

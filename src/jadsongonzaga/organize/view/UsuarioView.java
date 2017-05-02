@@ -3,7 +3,6 @@ package jadsongonzaga.organize.view;
 
 import jadsongonzaga.organize.controller.BuscaUsuarioController;
 import jadsongonzaga.organize.controller.UsuarioController;
-import jadsongonzaga.organize.model.Clinica;
 import jadsongonzaga.organize.model.Usuario;
 import java.util.LinkedList;
 import java.util.List;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.3.1.final using JasperReports Library version 6.3.1  -->
-<!-- 2017-05-01T21:41:47 -->
+<!-- 2017-05-02T07:54:16 -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pacienteTipoCancer" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4eedbb89-b4f6-4469-9ab6-f642a1688cf7">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="dbteste"/>
@@ -62,17 +62,16 @@
 		</queryString>
 	</subDataset>
 	<queryString language="SQL">
-		<![CDATA[SELECT
-   count(tra.id) quantidade_paciente,
-   tca.descricao
-FROM
-   tratamento tra
-   INNER JOIN tipo_cancer tca on tra.tipo_cancer_id = tca.id
-WHERE
-  tra.data_fim_tratamento IS NULL and
-  tra.tipo_finalizacao IS NULL
-GROUP BY
-   tca.descricao]]>
+		<![CDATA[SELECT count( tra.paciente_id) quantidade_paciente,
+	tca.descricao
+FROM tratamento tra
+	INNER JOIN tipo_cancer tca ON 
+	 tra.tipo_cancer_id = tca.id 
+WHERE 
+	 tra.data_fim_tratamento IS NULL  
+	 AND tra.tipo_finalizacao IS NULL  
+GROUP BY tca.descricao
+ORDER BY tca.descricao ASC]]>
 	</queryString>
 	<field name="quantidade_paciente" class="java.lang.Long"/>
 	<field name="descricao" class="java.lang.String"/>
@@ -89,14 +88,14 @@ GROUP BY
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="387" y="19" width="80" height="14" uuid="6aa14ab1-c76e-4b66-b7fb-eeb9d11d1586"/>
+				<reportElement x="401" y="15" width="80" height="14" uuid="6aa14ab1-c76e-4b66-b7fb-eeb9d11d1586"/>
 				<textElement textAlignment="Right">
 					<font fontName="Arial"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement x="469" y="19" width="86" height="14" uuid="30d7d78e-6f4e-4566-9c48-2c35abf506c4"/>
+				<reportElement x="483" y="15" width="71" height="14" uuid="30d7d78e-6f4e-4566-9c48-2c35abf506c4"/>
 				<textElement textAlignment="Left">
 					<font fontName="Arial"/>
 				</textElement>

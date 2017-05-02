@@ -2,7 +2,6 @@
 package jadsongonzaga.organize.view;
 
 import jadsongonzaga.organize.controller.RelatorioTipoCancerMunicipioController;
-import jadsongonzaga.organize.controller.RelatorioTotalTipoCancer;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
 

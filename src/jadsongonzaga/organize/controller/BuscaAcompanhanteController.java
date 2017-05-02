@@ -2,7 +2,6 @@
 package jadsongonzaga.organize.controller;
 
 import jadsongonzaga.organize.model.Busca;
-import jadsongonzaga.organize.model.BuscaDAO;
 import java.util.LinkedList;
 import java.util.List;
 

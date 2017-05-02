@@ -5,8 +5,6 @@ import jadsongonzaga.organize.model.GraficoDados;
 import java.awt.Font;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
