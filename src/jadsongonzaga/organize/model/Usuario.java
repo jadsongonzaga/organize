@@ -60,6 +60,13 @@ public class Usuario {
     public void setConfirmacaoSenha(String confirmacaoSenha) {
         this.confirmacaoSenha = confirmacaoSenha;
     }
+
+    @Override
+    public String toString() {
+        return this.nome;
+    }
+    
+    
     
     /**
      * Verifica se a senha de confimação é igual ao campo senha

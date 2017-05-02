@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -56,7 +57,7 @@ public class AuditoriaDAO {
                     + "  id ";
         
         PreparedStatement pst = conexao.prepareStatement(sql);
-        pst.setDate(1, Date.valueOf(data));
+        pst.setString(1, data.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         ResultSet rs = pst.executeQuery();
         while (rs.next()) {
             auditoria = new Auditoria();

@@ -5,6 +5,11 @@ import jadsongonzaga.organize.model.Auditoria;
 import jadsongonzaga.organize.model.AuditoriaDAO;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -37,13 +42,28 @@ public class AuditoriaController {
         auditoria.setIdentificacaoRegistro(idRegistro);
         auditoria.setRotina(rotina);
 
-        System.out.println("INSERIR AUDITORIA");
-        /*try {
+        //System.out.println("INSERIR AUDITORIA");
+        try {
             
           dao.inserir(auditoria);
         } catch (SQLException ex) {
             ExceptionController.tratar(ex, auditoria);
-        }*/
+        }
+    }
+    
+    public List<Auditoria> obter(LocalDate data){
+        List<Auditoria> lista = new LinkedList<>();
+        
+        try {
+            if(data == null)
+                data = LocalDate.now();
+            
+            lista = dao.obter(data);
+        } catch (SQLException ex) {
+            ExceptionController.tratar(ex);
+        }
+        
+        return lista;
     }
 
 }

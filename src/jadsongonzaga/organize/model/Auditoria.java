@@ -59,12 +59,14 @@ public class Auditoria {
      * * UPDATE<br>
      */
     public enum TipoOperacao {
-        INSERT(0), DELETE(1), UPDATE(2);
+        INSERT(0, "Inserção"), DELETE(1, "Remoção"), UPDATE(2, "Alteração");
 
         private final int codigo;
+        private final String descricao;
 
-        private TipoOperacao(int codigo) {
+        private TipoOperacao(int codigo, String descricao) {
             this.codigo = codigo;
+            this.descricao = descricao;
         }
 
         public int getCodigo() {
@@ -79,20 +81,31 @@ public class Auditoria {
             }
             return null;
         }
+
+        @Override
+        public String toString() {
+            return this.descricao;
+        }
+        
     }
 
     /**
      * Enum da rotinas contidas no sistema
      */
     public enum Rotina {
-        ENDERECO(1), PESSOA(2), ACOMPANHANTE(3), PACIENTE(4), CLINICA(5),
-        TIPO_CANCER(6), TRATAMENTO(7), USUARIO(8), TIPO_DOACAO(9), TIPO_SERVICO(10),
-        DOADOR(11), SERVICO(12), SERVICO_ITEM(13), DOACAO(14), UTILIZACAO_DOACAO(14), INSTITUICAO(15);
+        ENDERECO(1, "Endereço"), PESSOA(2, "Pessoa"), ACOMPANHANTE(3, "Acompanhate"),
+        PACIENTE(4, "Paciente"), CLINICA(5, "Clínica"), TIPO_CANCER(6, "Tipo de câncer"),
+        TRATAMENTO(7, "Tratamento"), USUARIO(8, "Usuário"), TIPO_DOACAO(9, "Doação"),
+        TIPO_SERVICO(10, "Tipo de serviço"), DOADOR(11, "Doador"), SERVICO(12, "Serviço"),
+        SERVICO_ITEM(13, "Item do serviço"), DOACAO(14, "Doação"), 
+        UTILIZACAO_DOACAO(14, "Utilização da doação"), INSTITUICAO(15, "Intituição");
 
         private final int codigo;
+        private final String descricao;
 
-        private Rotina(int codigo) {
+        private Rotina(int codigo, String descricao) {
             this.codigo = codigo;
+            this.descricao = descricao;
         }
 
         public int getCodigo() {
@@ -107,6 +120,13 @@ public class Auditoria {
             }
             return null;
         }
+
+        @Override
+        public String toString() {
+            return this.descricao;
+        }
+        
+        
 
     }
 
