@@ -19,9 +19,12 @@ public class Organize {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+
+        String look = (System.getProperty("os.name").equalsIgnoreCase("Linux") ? "GTK+" : "Windows");
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("GTK+".equals(info.getName())) {
+                if (look.equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
