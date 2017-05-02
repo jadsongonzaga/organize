@@ -1,6 +1,11 @@
 
 package jadsongonzaga.organize.view;
 
+import jadsongonzaga.organize.controller.RelatorioTipoCancerMunicipioController;
+import jadsongonzaga.organize.controller.RelatorioTotalTipoCancer;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
+
 /**
  *
  * @author jadson
@@ -30,6 +35,9 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItem15 = new javax.swing.JMenuItem();
+        jMenuItem16 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
@@ -40,6 +48,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
+        jMenuItem17 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
 
@@ -81,6 +90,26 @@ public class PrincipalView extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem5);
+
+        jMenu5.setText("Relatórios e gráficos");
+
+        jMenuItem15.setText("Tipos de câncer - Totais");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem15);
+
+        jMenuItem16.setText("Tipos de câncer por município");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem16);
+
+        jMenu1.add(jMenu5);
 
         jMenuBar1.add(jMenu1);
 
@@ -155,6 +184,14 @@ public class PrincipalView extends javax.swing.JFrame {
             }
         });
         jMenu4.add(jMenuItem14);
+
+        jMenuItem17.setText("Auditoria");
+        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem17ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem17);
 
         jMenuBar1.add(jMenu4);
 
@@ -265,6 +302,24 @@ public class PrincipalView extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+
+        totaisTipoCancer();
+        
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
+
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+
+        tipoCancerPorMunicipio();
+        
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
+
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+
+        auditoria();
+        
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -305,6 +360,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
@@ -312,6 +368,9 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
+    private javax.swing.JMenuItem jMenuItem16;
+    private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -398,5 +457,25 @@ public class PrincipalView extends javax.swing.JFrame {
         InstituicaoView instituicao = new InstituicaoView(this, false);
         instituicao.setLocationRelativeTo(this);
         instituicao.setVisible(true);
+    }
+
+    private void totaisTipoCancer() {
+        TotalTipoCancerView totais = new TotalTipoCancerView(this, false);
+        totais.setLocationRelativeTo(this);
+        totais.setVisible(true);
+    }
+
+    private void tipoCancerPorMunicipio() {
+        RelatorioTipoCancerMunicipioController relCtrl = new RelatorioTipoCancerMunicipioController();
+        
+        JasperPrint relat = relCtrl.gerar();
+
+        JasperViewer.viewReport(relat, false);
+    }
+
+    private void auditoria() {
+        AuditoriaView auditoria = new AuditoriaView(this, false);
+        auditoria.setLocationRelativeTo(this);
+        auditoria.setVisible(true);
     }
 }
