@@ -453,8 +453,10 @@ public class InstituicaoView extends javax.swing.JDialog {
         jtNomeFantasia.setText(inst.getNomeFantasia());
         jtDocumento.setText(inst.getDocumento());
         setEndereco(inst.getEndereco());
-        if(inst.getLogo() != null)
+        if(inst.getLogo() != null){
             setImagem(inst.getLogo());
+            logo = inst.getLogo();
+        }
 
     }
 
