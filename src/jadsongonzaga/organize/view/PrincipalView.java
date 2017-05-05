@@ -1,7 +1,9 @@
 
 package jadsongonzaga.organize.view;
 
+import jadsongonzaga.organize.Organize;
 import jadsongonzaga.organize.controller.RelatorioTipoCancerMunicipioController;
+import jadsongonzaga.organize.model.Usuario;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
 
@@ -16,6 +18,7 @@ public class PrincipalView extends javax.swing.JFrame {
      */
     public PrincipalView() {
         initComponents();
+        validarPerfilUsr();
     }
 
     /**
@@ -29,7 +32,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        jmAtendimento = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -37,26 +40,26 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jmFinanceiro = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
+        jmUtilitario = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem17 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        jmAjuda = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jMenu1.setMnemonic('A');
-        jMenu1.setText("Atendimento");
+        jmAtendimento.setMnemonic('A');
+        jmAtendimento.setText("Atendimento");
 
         jMenuItem2.setText("Acompanhante");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -64,7 +67,7 @@ public class PrincipalView extends javax.swing.JFrame {
                 jMenuItem2ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jmAtendimento.add(jMenuItem2);
 
         jMenuItem3.setText("Clínica");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -72,7 +75,7 @@ public class PrincipalView extends javax.swing.JFrame {
                 jMenuItem3ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        jmAtendimento.add(jMenuItem3);
 
         jMenuItem4.setText("Paciente");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -80,7 +83,7 @@ public class PrincipalView extends javax.swing.JFrame {
                 jMenuItem4ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem4);
+        jmAtendimento.add(jMenuItem4);
 
         jMenuItem5.setText("Tipo de câncer");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
@@ -88,7 +91,7 @@ public class PrincipalView extends javax.swing.JFrame {
                 jMenuItem5ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem5);
+        jmAtendimento.add(jMenuItem5);
 
         jMenu5.setText("Relatórios e gráficos");
 
@@ -100,7 +103,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu5.add(jMenuItem15);
 
-        jMenuItem16.setText("Tipos de câncer por município");
+        jMenuItem16.setText("Incidência câncer por município");
         jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem16ActionPerformed(evt);
@@ -108,12 +111,12 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenu5.add(jMenuItem16);
 
-        jMenu1.add(jMenu5);
+        jmAtendimento.add(jMenu5);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jmAtendimento);
 
-        jMenu2.setMnemonic('F');
-        jMenu2.setText("Financeiro");
+        jmFinanceiro.setMnemonic('F');
+        jmFinanceiro.setText("Financeiro");
 
         jMenuItem8.setText("Tipo do serviço");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
@@ -121,7 +124,7 @@ public class PrincipalView extends javax.swing.JFrame {
                 jMenuItem8ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem8);
+        jmFinanceiro.add(jMenuItem8);
 
         jMenuItem9.setText("Tipo da doação");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
@@ -129,7 +132,7 @@ public class PrincipalView extends javax.swing.JFrame {
                 jMenuItem9ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem9);
+        jmFinanceiro.add(jMenuItem9);
 
         jMenuItem10.setText("Doador");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
@@ -137,7 +140,7 @@ public class PrincipalView extends javax.swing.JFrame {
                 jMenuItem10ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem10);
+        jmFinanceiro.add(jMenuItem10);
 
         jMenuItem11.setText("Serviço");
         jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
@@ -145,7 +148,7 @@ public class PrincipalView extends javax.swing.JFrame {
                 jMenuItem11ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem11);
+        jmFinanceiro.add(jMenuItem11);
 
         jMenuItem12.setText("Doação");
         jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
@@ -153,7 +156,7 @@ public class PrincipalView extends javax.swing.JFrame {
                 jMenuItem12ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem12);
+        jmFinanceiro.add(jMenuItem12);
 
         jMenuItem13.setText("Utilização da doação");
         jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
@@ -161,12 +164,12 @@ public class PrincipalView extends javax.swing.JFrame {
                 jMenuItem13ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem13);
+        jmFinanceiro.add(jMenuItem13);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(jmFinanceiro);
 
-        jMenu4.setMnemonic('e');
-        jMenu4.setText("Utilitários");
+        jmUtilitario.setMnemonic('e');
+        jmUtilitario.setText("Utilitários");
 
         jMenuItem7.setText("Usuário");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
@@ -174,7 +177,7 @@ public class PrincipalView extends javax.swing.JFrame {
                 jMenuItem7ActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem7);
+        jmUtilitario.add(jMenuItem7);
 
         jMenuItem14.setText("Instituição");
         jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
@@ -182,7 +185,7 @@ public class PrincipalView extends javax.swing.JFrame {
                 jMenuItem14ActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem14);
+        jmUtilitario.add(jMenuItem14);
 
         jMenuItem17.setText("Auditoria");
         jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
@@ -190,12 +193,12 @@ public class PrincipalView extends javax.swing.JFrame {
                 jMenuItem17ActionPerformed(evt);
             }
         });
-        jMenu4.add(jMenuItem17);
+        jmUtilitario.add(jMenuItem17);
 
-        jMenuBar1.add(jMenu4);
+        jMenuBar1.add(jmUtilitario);
 
-        jMenu3.setMnemonic('j');
-        jMenu3.setText("Ajuda");
+        jmAjuda.setMnemonic('j');
+        jmAjuda.setText("Ajuda");
 
         jMenuItem6.setText("Sobre");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
@@ -203,9 +206,9 @@ public class PrincipalView extends javax.swing.JFrame {
                 jMenuItem6ActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem6);
+        jmAjuda.add(jMenuItem6);
 
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(jmAjuda);
 
         setJMenuBar(jMenuBar1);
 
@@ -355,10 +358,6 @@ public class PrincipalView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
@@ -378,6 +377,10 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenu jmAjuda;
+    private javax.swing.JMenu jmAtendimento;
+    private javax.swing.JMenu jmFinanceiro;
+    private javax.swing.JMenu jmUtilitario;
     // End of variables declaration//GEN-END:variables
 
     private void acompanhante() {
@@ -476,5 +479,14 @@ public class PrincipalView extends javax.swing.JFrame {
         AuditoriaView auditoria = new AuditoriaView(this, false);
         auditoria.setLocationRelativeTo(this);
         auditoria.setVisible(true);
+    }
+    
+    private void validarPerfilUsr(){
+        if(Organize.USUARIO.getTipo() == Usuario.Tipo.ATENDIMENTO){
+            jmFinanceiro.setVisible(false);
+            jmUtilitario.setVisible(false);
+        }else if(Organize.USUARIO.getTipo() == Usuario.Tipo.FINANCEIRO){
+            jmUtilitario.setVisible(false);
+        }
     }
 }
