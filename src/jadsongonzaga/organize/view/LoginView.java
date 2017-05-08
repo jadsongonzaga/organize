@@ -6,7 +6,10 @@
 package jadsongonzaga.organize.view;
 
 import jadsongonzaga.organize.controller.UsuarioController;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -25,6 +28,7 @@ public class LoginView extends javax.swing.JDialog {
     public LoginView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        adicionarIcon();
     }
 
     /**
@@ -255,6 +259,12 @@ public class LoginView extends javax.swing.JDialog {
                 jtUsuario.grabFocus();
             }
         }
+    }
+    
+    private void adicionarIcon(){
+        URL url = this.getClass().getResource("icones/icone.png");
+        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+        this.setIconImage(imagemTitulo);
     }
 
 }

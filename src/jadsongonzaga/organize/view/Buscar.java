@@ -8,7 +8,10 @@ package jadsongonzaga.organize.view;
 import jadsongonzaga.organize.controller.BuscaController;
 import jadsongonzaga.organize.controller.Utils;
 import jadsongonzaga.organize.model.Busca;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.net.URL;
 import java.util.List;
 import java.util.Map;
 import javax.swing.JOptionPane;
@@ -37,6 +40,7 @@ public class Buscar extends javax.swing.JDialog {
         comboCondicoes();
         comboOrdem();
         buscarCodicao();
+        adicionarIcon();
     }
 
     /**
@@ -277,4 +281,9 @@ public class Buscar extends javax.swing.JDialog {
         jtbResultado.setModel(model);
     }
 
+    private void adicionarIcon(){
+        URL url = this.getClass().getResource("icones/icone.png");
+        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+        this.setIconImage(imagemTitulo);
+    }
 }

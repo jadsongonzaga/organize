@@ -4,6 +4,9 @@ package jadsongonzaga.organize.view;
 import jadsongonzaga.organize.Organize;
 import jadsongonzaga.organize.controller.RelatorioTipoCancerMunicipioController;
 import jadsongonzaga.organize.model.Usuario;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
 
@@ -19,6 +22,7 @@ public class PrincipalView extends javax.swing.JFrame {
     public PrincipalView() {
         initComponents();
         validarPerfilUsr();
+        adicionarIcon();
     }
 
     /**
@@ -57,6 +61,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Organize");
 
         jmAtendimento.setMnemonic('A');
         jmAtendimento.setText("Atendimento");
@@ -488,5 +493,11 @@ public class PrincipalView extends javax.swing.JFrame {
         }else if(Organize.USUARIO.getTipo() == Usuario.Tipo.FINANCEIRO){
             jmUtilitario.setVisible(false);
         }
+    }
+    
+    private void adicionarIcon(){
+        URL url = this.getClass().getResource("icones/icone.png");
+        Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
+        this.setIconImage(imagemTitulo);
     }
 }
