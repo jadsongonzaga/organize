@@ -310,7 +310,7 @@ public class InstituicaoView extends javax.swing.JDialog {
     private void jtCepFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtCepFocusLost
 
         //pesquisa o endereço apenas se não foi informado, validação para edição
-        if (jtLogradouro.getText().isEmpty()) {
+        if (!jtLogradouro.getText().isEmpty()) {
             evtBuscaCep();
         }
     }//GEN-LAST:event_jtCepFocusLost
