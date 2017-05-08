@@ -241,3 +241,11 @@ CREATE TABLE instituicao
   CONSTRAINT pkinstituicao PRIMARY KEY (id),
   CONSTRAINT fk_instituicao_endereco FOREIGN KEY (endereco_id) REFERENCES endereco (id)
 );
+
+CREATE TABLE login
+(
+    id                      SERIAL NOT NULL,
+    usuario_id              INTEGER NOT NULL,
+    instante_login          TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    CONSTRAINT fk_login_usuario FOREIGN KEY (usuario_id) REFERENCES usuario (id)
+);

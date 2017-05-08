@@ -3,6 +3,8 @@ package jadsongonzaga.organize.controller;
 
 import jadsongonzaga.organize.Organize;
 import jadsongonzaga.organize.model.Auditoria;
+import jadsongonzaga.organize.model.Login;
+import jadsongonzaga.organize.model.LoginDAO;
 import jadsongonzaga.organize.model.Usuario;
 import jadsongonzaga.organize.model.UsuarioDAO;
 import java.sql.SQLException;
@@ -97,6 +99,7 @@ public class UsuarioController {
             usr = dao.obter(login);
             if(usr != null && usr.getSenha().equals(senha)){
                 Organize.USUARIO = usr;
+                new LoginDAO().inserir(new Login(usr));
                 return true;
             }
         } catch (SQLException ex) {
