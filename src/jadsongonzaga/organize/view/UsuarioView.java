@@ -51,7 +51,7 @@ public class UsuarioView extends javax.swing.JDialog {
         jtConfirmarSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Tipo de câncer");
+        setTitle("Usuário");
         setResizable(false);
 
         panelPessoa.setBorder(javax.swing.BorderFactory.createTitledBorder("Usuário"));

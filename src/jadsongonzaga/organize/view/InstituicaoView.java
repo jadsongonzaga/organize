@@ -78,7 +78,7 @@ public class InstituicaoView extends javax.swing.JDialog {
         jcMunicipio = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Utilização da doação");
+        setTitle("Instituição");
         setResizable(false);
 
         panelPessoa.setBorder(javax.swing.BorderFactory.createTitledBorder("Instituição"));
