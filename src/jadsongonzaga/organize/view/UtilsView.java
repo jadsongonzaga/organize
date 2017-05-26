@@ -69,7 +69,8 @@ public class UtilsView {
                 }
 
             } else if (componente instanceof JDateChooser) {
-                if (((JDateChooser) componente).getDate().toString().isEmpty()) {
+                
+                if (((JDateChooser) componente).getDate() == null || ((JDateChooser) componente).getDate().toString().isEmpty()) {
                     ((JDateChooser) componente).grabFocus();
                     mensagemObrigatoriedade(value);
                     return false;
