@@ -15,6 +15,8 @@ import jadsongonzaga.organize.model.Municipio;
 import jadsongonzaga.organize.model.Paciente;
 import jadsongonzaga.organize.model.Pessoa;
 import jadsongonzaga.organize.model.Tratamento;
+import java.util.LinkedList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -333,31 +335,33 @@ public class PacienteView extends javax.swing.JDialog {
             .addGroup(panelPessoaLayout.createSequentialGroup()
                 .addGroup(panelPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtId, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtId, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtNome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtNome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel5)
                         .addComponent(jtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jtRg, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jtRg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel8)
                         .addComponent(jtRg1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelPessoaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
+
+        panelPessoaLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jtCelular, jtEmail, jtId, jtNome, jtRg, jtRg1, jtTelefone});
 
         panelEndereco.setBorder(javax.swing.BorderFactory.createTitledBorder("Endereço"));
         panelEndereco.setPreferredSize(new java.awt.Dimension(709, 128));
@@ -783,17 +787,28 @@ public class PacienteView extends javax.swing.JDialog {
             @Override
             public boolean salvar() {
 
-                Paciente pacie = getPaciente();
-                Pessoa pessoa = getPessoa();
-                    
-                pessoa.setEndereco(getEndereco());
-                pacie.setPessoa(pessoa);
-                if(!novo){
-                  pacie.getPessoa().getEndereco().setId(paciente.getPessoa().getEndereco().getId());
+                List<ComponenteInfo> componentes = new LinkedList<>();
+
+                componentes.add(new ComponenteInfo(jtNome, "Nome"));
+                componentes.add(new ComponenteInfo(jdDataNascimento, "Data de nascimento"));
+                componentes.add(new ComponenteInfo(jtCep, "CEP"));
+                componentes.add(new ComponenteInfo(jtLogradouro, "Logradouro"));
+                componentes.add(new ComponenteInfo(jcMunicipio, "Cidade"));
+                if (UtilsView.validaCamposObrigatorios(componentes)) {
+                    Paciente pacie = getPaciente();
+                    Pessoa pessoa = getPessoa();
+
+                    pessoa.setEndereco(getEndereco());
+                    pacie.setPessoa(pessoa);
+                    if (!novo) {
+                        pacie.getPessoa().getEndereco().setId(paciente.getPessoa().getEndereco().getId());
+                    }
+                    controller.salvar(pacie, novo);
+                    modoInicial();
+                    return true;
                 }
-                controller.salvar(pacie, novo);
-                modoInicial();
-                return true;
+                return false;
+
             }
 
             @Override

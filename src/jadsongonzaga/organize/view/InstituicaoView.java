@@ -492,7 +492,7 @@ public class InstituicaoView extends javax.swing.JDialog {
                  componentes.add(new ComponenteInfo(jtNomeFantasia, "Nome fantasia"));
                  componentes.add(new ComponenteInfo(jtCep, "CEP"));
                  componentes.add(new ComponenteInfo(jtLogradouro, "Logradouro"));
-                 componentes.add(new ComponenteInfo(jcMunicipio, "Cidade"));
+                 componentes.add(new ComponenteInfo(jcMunicipio, "Município"));
                 if (UtilsView.validaCamposObrigatorios(componentes)) {
                     instituicao = getInstituicao();
                     
