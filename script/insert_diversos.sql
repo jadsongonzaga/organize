@@ -8,4 +8,4 @@
  * Created: 07/05/2017
  */
 
-INSERT INTO usuario (tipo, nome, login, senha) VALUES (1, 'Administrador', 'adm', 'adm');
+INSERT INTO usuario (tipo, nome, login, senha) VALUES (1, 'Administrador', 'adm', '9i2+hrxAExEljc2Tz8QghQ==');

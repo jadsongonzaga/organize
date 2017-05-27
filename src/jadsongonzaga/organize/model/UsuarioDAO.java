@@ -1,6 +1,7 @@
 
 package jadsongonzaga.organize.model;
 
+import jadsongonzaga.organize.Criptografia;
 import jadsongonzaga.organize.controller.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,7 +31,7 @@ public class UsuarioDAO {
         PreparedStatement pst = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         pst.setString(1, usuario.getNome());
         pst.setString(2, usuario.getLogin());
-        pst.setString(3, usuario.getSenha());
+        pst.setString(3, Criptografia.encode(usuario.getSenha()));
         pst.setInt(4, usuario.getTipo().getId());
         
         pst.execute();
@@ -56,7 +57,7 @@ public class UsuarioDAO {
 
         pst.setString(1, usuario.getNome());
         pst.setString(2, usuario.getLogin());
-        pst.setString(3, usuario.getSenha());
+        pst.setString(3, Criptografia.encode(usuario.getSenha()));
         pst.setInt(4, usuario.getTipo().getId());
         
         pst.setInt(5, usuario.getId());
@@ -109,7 +110,7 @@ public class UsuarioDAO {
             usuario.setId(id);
             usuario.setLogin(rs.getString("login")); 
             usuario.setNome(rs.getString("nome")); 
-            usuario.setSenha(rs.getString("senha")); 
+            usuario.setSenha(Criptografia.decode(rs.getString("senha"))); 
             usuario.setTipo(Usuario.Tipo.valueOfId(rs.getInt("tipo"))); 
         }
 
@@ -143,7 +144,7 @@ public class UsuarioDAO {
             usuario.setId(rs.getInt("id"));
             usuario.setLogin(rs.getString("login")); 
             usuario.setNome(rs.getString("nome")); 
-            usuario.setSenha(rs.getString("senha")); 
+            usuario.setSenha(Criptografia.decode(rs.getString("senha"))); 
             usuario.setTipo(Usuario.Tipo.valueOfId(rs.getInt("tipo"))); 
         }
 
@@ -176,7 +177,7 @@ public class UsuarioDAO {
             usuario.setId(rs.getInt("id"));
             usuario.setLogin(rs.getString("login")); 
             usuario.setNome(rs.getString("nome")); 
-            usuario.setSenha(rs.getString("senha")); 
+            usuario.setSenha(Criptografia.decode(rs.getString("senha"))); 
             usuario.setTipo(Usuario.Tipo.valueOfId(rs.getInt("tipo"))); 
 
             usuarios.add(usuario);

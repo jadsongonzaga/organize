@@ -23,7 +23,7 @@ CREATE TABLE endereco
     cep                     VARCHAR(8) NULL,
     logradouro              VARCHAR(60) NULL,
     numero                  VARCHAR(6) NULL,
-    ponto_referencia        VARCHAR(6) NULL,
+    ponto_referencia        VARCHAR(60) NULL,
     bairro                  VARCHAR(40) NULL,
     municipio_id            INTEGER NOT NULL,
     data_criacao            TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
@@ -204,7 +204,7 @@ CREATE TABLE usuario
     tipo                    INTEGER NOT NULL DEFAULT 3,
     nome                    VARCHAR(60) NOT NULL,
     login                   VARCHAR(60) NOT NULL,
-    senha                   VARCHAR NOT NULL,
+    senha                   VARCHAR(100) NOT NULL,
     data_criacao            TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     CONSTRAINT pk_usuario PRIMARY KEY (id),
     CONSTRAINT un_login unique (login)

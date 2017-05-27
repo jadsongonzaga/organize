@@ -1,5 +1,6 @@
 package jadsongonzaga.organize.controller;
 
+import jadsongonzaga.organize.Criptografia;
 import jadsongonzaga.organize.model.Propriedades;
 import java.io.File;
 import java.io.FileInputStream;
@@ -53,7 +54,7 @@ public class PropriedadesController {
         propriedades.setNomeBanco(props.getProperty(NOME_BANCO));
         propriedades.setPorta(props.getProperty(PORTA));
         propriedades.setUsuario(props.getProperty(USUARIO));
-        propriedades.setSenha(props.getProperty(SENHA));
+        propriedades.setSenha(Criptografia.decode(props.getProperty(SENHA)));
 
         return propriedades;
     }
@@ -64,7 +65,7 @@ public class PropriedadesController {
 
         prop.setProperty(PORTA, propriedades.getPorta());
         prop.setProperty(USUARIO, propriedades.getUsuario());
-        prop.setProperty(SENHA, propriedades.getSenha());
+        prop.setProperty(SENHA, Criptografia.encode(propriedades.getSenha()));
         prop.setProperty(ENDERECO, propriedades.getEndereco());
         prop.setProperty(NOME_BANCO, propriedades.getNomeBanco());
 
