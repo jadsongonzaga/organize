@@ -1,0 +1,8 @@
+## 2017-05-27T03:19:04.612
+Problema ao tentar comunicação com o banco de dados
+
+## 2017-05-27T03:24:06.574
+Problema ao tentar comunicação com o banco de dados.
+
+FATAL: banco de dados "db0030" não existe
+

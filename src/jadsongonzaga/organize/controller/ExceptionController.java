@@ -28,6 +28,15 @@ public class ExceptionController {
         ex.printStackTrace();
     }
     
+    public static void tratar(String mensagem, Exception ex){
+        
+        mensagem = mensagem + "\n\n" + ex.getMessage();
+        
+        Log.gravar(mensagem);
+        abrirForm(mensagem);
+
+    }
+    
     private static void abrirForm(String mensagem){
         Exercao exercao = new Exercao(null, true, mensagem);
         exercao.setLocationRelativeTo(null);

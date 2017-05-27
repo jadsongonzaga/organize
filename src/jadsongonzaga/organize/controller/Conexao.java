@@ -28,7 +28,7 @@ public class Conexao {
             con = DriverManager.getConnection("jdbc:postgresql://" + prop.getEndereco() + ":" + prop.getPorta() + "/" + prop.getNomeBanco(), prop.getUsuario(), prop.getSenha());
 
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
+            ExceptionController.tratar("Problema ao tentar comunicação com o banco de dados.", ex);
         }
 
         return con;
