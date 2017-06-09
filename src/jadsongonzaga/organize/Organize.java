@@ -7,6 +7,7 @@ package jadsongonzaga.organize;
 
 import jadsongonzaga.organize.model.Usuario;
 import jadsongonzaga.organize.view.LoginView;
+import jadsongonzaga.organize.view.LoginView;
 
 /**
  *
@@ -33,7 +34,8 @@ public class Organize {
             java.util.logging.Logger.getLogger(Organize.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         
-        LoginView login = new LoginView(null, true);
+        LoginView login = new LoginView();
+        login.setLocationRelativeTo(null);
         login.setVisible(true);
 
     }

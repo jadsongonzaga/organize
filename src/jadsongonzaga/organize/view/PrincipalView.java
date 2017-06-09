@@ -569,8 +569,9 @@ public class PrincipalView extends javax.swing.JFrame {
     
     private void logoff(){
         Organize.USUARIO = null;
-        LoginView login = new LoginView(this, false);
+        LoginView login = new LoginView();
         dispose();
+        login.setLocationRelativeTo(this);
         login.setVisible(true);
                
     }
