@@ -26,7 +26,7 @@ public class Acompanhante {
     }
 
     public enum GrauParentesco {
-        PAI(1, "Pai"), MAE(2, "Mãe"), IRMAO(3, "Irmã(ão)"), CONJUGE(4,"Cônjuge"), AVO(5, "Avô(ó)"), TIO(6, "Tio(a)"), SOBRINHO(7,"Sobrinho(a)"), PRIMO(8,"Primo(a)"), NENHUM(9,"Nenhum");
+        PAI(1, "Pai"), MAE(2, "Mãe"), IRMAO(3, "Irmã(ão)"), CONJUGE(4,"Cônjuge"), AVO(5, "Avô(ó)"), TIO(6, "Tio(a)"), SOBRINHO(7,"Sobrinho(a)"), PRIMO(8,"Primo(a)"), FILHO(10,"Filho(a)") ,NENHUM(9,"Nenhum");
 
         private final int codigo;
         private final String nome;
