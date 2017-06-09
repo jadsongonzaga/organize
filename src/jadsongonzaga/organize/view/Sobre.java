@@ -37,7 +37,7 @@ public class Sobre extends javax.swing.JDialog {
 
         jLabel1.setText("Organize");
 
-        jLabel2.setText("Versão: 1.0.0");
+        jLabel2.setText("Versão: 1.0.1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
